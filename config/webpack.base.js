@@ -4,16 +4,19 @@ const HtmlWebpackPlugin = require("html-webpack-plugin")
 function genWebpackConfig(mode) {
     return {
         mode: mode || 'development',
-        entry: path.resolve(__dirname, '../packages/docs/index.jsx'),
+        entry: path.resolve(__dirname, '../packages/docs/index.tsx'),
         output: {
             path: path.resolve(__dirname, '../dist/docs'),
             filename: 'main.js',
         },
         watch: true,
+        resolve: {
+            extensions: ['.js', '.json', '.jsx', '.tsx', '.vue']
+        },
         module: {
             rules: [
                 {
-                    test: /\.jsx$/i,
+                    test: /\.(jsx|tsx)$/i,
                     exclude: /(node_modules|bower_components)/,
                     use: {
                         loader: 'babel-loader'

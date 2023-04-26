@@ -1,5 +1,4 @@
 import React from "react";
-import TestComponent from "test"
 import { Button } from "@apis/react"
 
 const HomePage = () => {
@@ -7,7 +6,6 @@ const HomePage = () => {
         <div className="home-page">
             Home Page
             <Button />
-            <TestComponent />
         </div>
     )
 }
