@@ -1,4 +1,3 @@
-const { clear } = require("console");
 const path = require("path")
 const WebpackDevServer = require('webpack-dev-server')
 
@@ -20,7 +19,7 @@ const devServerOptions = {
         }
         console.clear()
         const port = devServer.server.address().port;
-        console.log('Listening on port:', port);
+        console.log('server is staring >>>>', port);
     },
 }
 

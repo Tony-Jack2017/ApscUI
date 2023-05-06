@@ -1,5 +1,6 @@
 const path = require('path')
 const HtmlWebpackPlugin = require("html-webpack-plugin")
+const ApisWebpackPlugin = require("./apis-webpack-plugin")
 
 function genWebpackConfig(mode) {
     return {
@@ -40,10 +41,12 @@ function genWebpackConfig(mode) {
             new HtmlWebpackPlugin({
                 inject: true,
                 template: './packages/docs/public/index.html'
-            })
+            }),
+            new ApisWebpackPlugin()
         ],
-        optimization: {
-
+        stats: {
+            preset: 'none',
+            logging: 'info'
         }
     }
 }
