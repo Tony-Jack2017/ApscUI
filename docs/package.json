@@ -4,7 +4,7 @@
   "author": "LTX",
   "license": "MIT",
   "dependencies": {
-    "@apis/react": "1.0.0",
+    "@apis/base-react": "1.0.0",
     "@babel/preset-react": "^7.18.6",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -14,6 +14,8 @@
     "@types/react": "^18.2.0",
     "@types/react-dom": "^18.2.0",
     "css-loader": "^6.7.3",
+    "less": "^4.1.3",
+    "less-loader": "^11.1.0",
     "style-loader": "^3.3.2"
   }
 }

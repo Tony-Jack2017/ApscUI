@@ -1,6 +1,9 @@
 import React from "react"
 import { Routes, Route } from "react-router-dom"
 
+// styles
+import "./styles/common.less"
+
 // pages
 import HomePage from "./pages/home/index"
 import BlogPage from "./pages/blog/index"

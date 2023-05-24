@@ -6,5 +6,6 @@
   "babelrcRoots": [
     ".",
     "packages/*",
+    "docs"
   ]
 }

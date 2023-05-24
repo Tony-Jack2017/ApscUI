@@ -1,11 +1,11 @@
 import React from "react";
-import { Button } from "@apis/react"
 
 const HomePage = () => {
     return (
         <div className="home-page">
-            Home Page
-            <Button />
+            <div className="apis-docs-container">
+                Home Page
+            </div>
         </div>
     )
 }

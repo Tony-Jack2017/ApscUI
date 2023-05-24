@@ -1,13 +1,15 @@
 const path = require('path')
 const HtmlWebpackPlugin = require("html-webpack-plugin")
-const ApisWebpackPlugin = require("./apis-webpack-plugin")
+const ApisWebpackPlugin = require("./plugins/apis-webpack-plugin")
 
 function genWebpackConfig(mode) {
     return {
         mode: mode || 'development',
-        entry: path.resolve(__dirname, '../packages/docs/index.tsx'),
+        entry: path.resolve(__dirname, '../docs/index.tsx'),
+        // entry: path.resolve(__dirname, '../packages/@apis/react/index.tsx'),
         output: {
             path: path.resolve(__dirname, '../dist/docs'),
+            // path: path.resolve(__dirname, '../dist/@apis/react'),
             filename: 'main.js',
         },
         watch: true,
@@ -22,6 +24,11 @@ function genWebpackConfig(mode) {
                     use: {
                         loader: 'babel-loader'
                     }
+                },
+                {
+                    test: /\.less$/i,
+                    use: ['style-loader', 'css-loader', 'less-loader']
+                   
                 },
                 {
                     test: /\.css$/i,
@@ -40,11 +47,12 @@ function genWebpackConfig(mode) {
         plugins: [
             new HtmlWebpackPlugin({
                 inject: true,
-                template: './packages/docs/public/index.html'
+                template: './docs/public/index.html'
             }),
             new ApisWebpackPlugin()
         ],
         stats: {
+            // preset: 'errors-only',
             preset: 'none',
             logging: 'info'
         }

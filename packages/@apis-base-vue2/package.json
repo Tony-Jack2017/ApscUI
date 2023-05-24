@@ -1,7 +1,6 @@
 {
-  "name": "style",
+  "name": "@apis/base-vue2",
   "version": "1.0.0",
-  "description": "Apis style package",
   "author": "LTX",
   "license": "MIT"
 }
