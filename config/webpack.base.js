@@ -28,7 +28,6 @@ function genWebpackConfig(mode) {
                 {
                     test: /\.less$/i,
                     use: ['style-loader', 'css-loader', 'less-loader']
-                   
                 },
                 {
                     test: /\.css$/i,

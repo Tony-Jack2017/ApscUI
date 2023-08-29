@@ -1,5 +1,5 @@
 {
-  "name": "APIS",
+  "name": "APSC",
   "version": "1.0.0",
   "main": "index.js",
   "author": "LTX",
@@ -9,6 +9,7 @@
     "docs": "node ./scripts/docs.js",
     "build": "node ./scripts/build.js"
   },
+  "dependencies": {},
   "devDependencies": {
     "@babel/cli": "^7.21.0",
     "@babel/core": "^7.21.0",
@@ -32,6 +33,5 @@
   "workspaces": [
     "packages/*",
     "docs"
-  ],
-  "dependencies": {}
+  ]
 }
