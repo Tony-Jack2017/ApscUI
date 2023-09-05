@@ -1,5 +1,5 @@
 const PLUGIN_NAME = 'apis-webpack-plugin';
-
+const chalk = require('chalk')
 module.exports = class MyWebpackPlugin {
   apply(compiler) {
     // you can access Logger from compiler
@@ -8,7 +8,7 @@ module.exports = class MyWebpackPlugin {
     compiler.hooks.compilation.tap(PLUGIN_NAME, (compilation) => {
       // you can also access Logger from compilation
       const logger = compilation.getLogger(PLUGIN_NAME);
-      logger.info('first output'); 
+      logger.info(chalk.rgb(255,0,0).bold.bgRgb(255,255,255)('Leo\'s Blog'))
       logger.info('log from compilation')
     });
   }
