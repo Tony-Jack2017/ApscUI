@@ -1,11 +1,12 @@
 import React from "react";
+import Container from "../../components/layout/base/container";
+import MainLayout from "../../components/layout/common/main-layout";
 
 const HomePage = () => {
     return (
-        <div className="home-page">
-            <div className="apis-docs-container">
-                Home Page
-            </div>
+        <div className="apsc-docs-home-page">
+            <MainLayout>
+            </MainLayout>
         </div>
     )
 }

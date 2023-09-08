@@ -8,7 +8,6 @@ module.exports = class MyWebpackPlugin {
     compiler.hooks.compilation.tap(PLUGIN_NAME, (compilation) => {
       // you can also access Logger from compilation
       const logger = compilation.getLogger(PLUGIN_NAME);
-      logger.info(chalk.rgb(255,0,0).bold.bgRgb(255,255,255)('Leo\'s Blog'))
       logger.info('log from compilation')
     });
   }

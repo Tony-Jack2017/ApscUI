@@ -2,7 +2,7 @@ import React from "react";
 
 const BlogPage = () => {
     return (
-        <div className="blog-page">
+        <div className="apsc-docs-blog-page">
             Blog Page
         </div>
     )
