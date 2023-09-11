@@ -1,5 +1,3 @@
-import React from "react";
-
 const ButtonPage = () => {
     return (
         <div className="button-page">

@@ -1,5 +1,3 @@
-import React from "react";
-
 const SwitchPage = () => {
     return (
         <div className="switch-page">
