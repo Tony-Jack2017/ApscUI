@@ -22,13 +22,13 @@ function genWebpackConfig(mode) {
             filename: 'main.js',
         },
         resolve: {
-            extensions: ['.js', '.json', '.jsx', '.tsx', '.vue']
+            extensions: ['.js', '.json', '.jsx', '.tsx', '.ts', '.vue']
         },
         // watch: true,
         module: {
             rules: [
                 {
-                    test: /\.(jsx|tsx)$/i,
+                    test: /\.(jsx|tsx|ts)$/i,
                     exclude: /(node_modules|bower_components)/,
                     use: {
                         loader: 'babel-loader'

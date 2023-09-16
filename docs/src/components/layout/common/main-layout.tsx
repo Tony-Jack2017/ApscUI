@@ -9,7 +9,9 @@ const MainLayout:React.FC<MainLayoutProps> = (props) => {
     return (
         <div className="apsc-docs-main-layout">
             <Header />
-            {props.children}
+            <main className="apsc-docs-layout-content">
+                {props.children}
+            </main>
         </div>
     )
 }

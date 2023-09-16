@@ -1,12 +1,14 @@
-import MainLayout from "../../components/layout/common/main-layout";
 import {Outlet} from "react-router-dom";
+import SidebarLayout from "../../components/layout/common/sidebar-layout";
+import CompSidebar from "../../components/layout/base/sidebar";
 
 const ComponentsPage = () => {
     return (
         <div className="apsc-docs-component-page">
-            <MainLayout>
+            <SidebarLayout>
+                <CompSidebar />
                 <Outlet />
-            </MainLayout>
+            </SidebarLayout>
         </div>
     )
 }

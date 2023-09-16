@@ -1,6 +1,7 @@
 const SelectPage = () => {
     return (
         <div className="select-page">
+            This is Select Page
         </div>
     )
 }

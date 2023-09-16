@@ -1,6 +1,6 @@
 
 // components
-import NavRight from "./nav-right";
+import NavRight from "./components/nav-right";
 
 // resource
 import logo from "../../../../assets/common/logo/logo.png"

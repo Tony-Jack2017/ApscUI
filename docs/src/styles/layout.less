@@ -1,0 +1,32 @@
+@import "common";
+
+@media screen and (min-width: 1280px) {
+  .@{docs}-main-layout {
+  }
+
+  .@{docs}-sidebar-layout {
+    position: relative;
+    .@{docs}-layout-header {
+      position: fixed;
+      width: calc(100% - 48px);
+    }
+    .@{docs}-layout-content {
+      padding-top: 72px;
+      .layout-content-sidebar {
+        box-sizing: border-box;
+        position: fixed;
+        top: 72px;
+        width: 300px;
+        height: calc(100% - 72px);
+        overflow-y: auto;
+        padding: 16px;
+        border-right: 1px solid rgba(43, 45, 48, 0.1);
+      }
+      .layout-content-main {
+        margin-left: 300px;
+        min-height: calc(100vh - 72px);
+        padding: 28px;
+      }
+    }
+  }
+}

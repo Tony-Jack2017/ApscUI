@@ -1,12 +1,12 @@
 
-import { menuList } from  "../../../../common/menus/hed-nav"
-import {NavLink} from "react-router-dom";
+import { NrMenuList } from "../../../../../common/menus"
+import { NavLink } from "react-router-dom";
 
 const NavRight = () => {
     return (
         <div className="layout-header-right-nav">
             {
-                menuList.map(((item, index) => {
+                NrMenuList.map(((item, index) => {
                     return (
                         <div className="nav-item" key={index}>
                             {

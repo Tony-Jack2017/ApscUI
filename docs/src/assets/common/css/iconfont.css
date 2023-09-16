@@ -1,16 +1,36 @@
 @font-face {
     font-family: "iconfont"; /* Project id 4248698 */
-    src: url('../font/iconfont.woff2?t=1694514069074') format('woff2'),
-    url('../font/iconfont.woff?t=1694514069074') format('woff'),
-    url('../font/iconfont.ttf?t=1694514069074') format('truetype');
+    src: url('../font/iconfont.woff2?t=1694827888780') format('woff2'),
+    url('../font/iconfont.woff?t=1694827888780') format('woff'),
+    url('../font/iconfont.ttf?t=1694827888780') format('truetype');
 }
 
 .iconfont {
     font-family: "iconfont" !important;
-    font-size: 16px;
+    font-size: 24px;
     font-style: normal;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-palette-fill1:before {
+    content: "\e71c";
+}
+
+.icon-code-s-slash-line:before {
+    content: "\e72c";
+}
+
+.icon-dashboard-3-fill:before {
+    content: "\e73c";
+}
+
+.icon-moon-fill:before {
+    content: "\e89b";
+}
+
+.icon-sun-fill:before {
+    content: "\e89e";
 }
 
 .icon-address-card:before {
@@ -163,10 +183,6 @@
 
 .icon-icon-test10:before {
     content: "\eb67";
-}
-
-.icon-icon-test11:before {
-    content: "\eb6c";
 }
 
 .icon-icon-test12:before {
