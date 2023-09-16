@@ -1,5 +1,4 @@
-import React from "react"
-import {RouterProvider} from "react-router-dom"
+import {RouterProvider} from "react-router"
 
 // styles
 import "./src/styles/common.less"

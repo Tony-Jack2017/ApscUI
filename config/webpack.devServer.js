@@ -5,6 +5,7 @@ const devServerOptions = {
     static:{
         directory: path.join(__dirname, "../packages/docs/public"),
     },
+    historyApiFallback: true, // solve the problem of browser router
     open: false,
     client: {
         progress: true,
