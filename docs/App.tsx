@@ -2,7 +2,7 @@ import {RouterProvider} from "react-router"
 
 // styles
 import "./src/styles/common.less"
-
+import "@apsc/style/index.less"
 import router from "./src/router";
 
 const App = () => {

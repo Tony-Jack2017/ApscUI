@@ -1,22 +1,7 @@
 @import "var";
-
-@docs: apsc-docs;
-
-.flex-cc {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.flex-cbw {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-}
+@import "minix";
 
 @media screen and (min-width: 1280px) {
-
   // layout
   .@{docs}-layout-header {
     .flex-cbw();
@@ -119,6 +104,17 @@
       color: @primary;
     }
 
+  }
+
+  // container
+  .container-page {
+    max-width: 80rem;
+    margin: 0 auto;
+  }
+
+  // other
+  .flex {
+    .flex-cbw()
   }
 }
 

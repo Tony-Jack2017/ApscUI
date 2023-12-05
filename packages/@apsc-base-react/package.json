@@ -1,10 +1,13 @@
 {
-  "name": "@apis/base-react",
+  "name": "@apsc/base-react",
   "version": "1.0.0",
   "main": "index.jsx",
   "license": "MIT",
   "peerDependencies": {
     "react": "^18.2.0"
   },
-  "devDependencies": {}
+  "devDependencies": {},
+  "dependencies": {
+    "classnames": "^2.3.2"
+  }
 }

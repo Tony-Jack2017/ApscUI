@@ -15,10 +15,10 @@ function genWebpackConfig(mode) {
     return {
         mode: mode || 'development',
         entry: path.resolve(__dirname, '../docs/index.tsx'),
-        // entry: path.resolve(__dirname, '../packages/@apis/react/index.tsx'),
+        // entry: path.resolve(__dirname, '../packages/@apsc/react/index.tsx'),
         output: {
             path: path.resolve(__dirname, '../dist/docs'),
-            // path: path.resolve(__dirname, '../dist/@apis/react'),
+            // path: path.resolve(__dirname, '../dist/@apsc/react'),
             filename: 'main.js',
         },
         resolve: {
