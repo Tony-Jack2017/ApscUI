@@ -9,6 +9,7 @@ import ListPage from "../pages/components/data/display/list";
 import TablePage from "../pages/components/data/display/table";
 import InputPage from "../pages/components/data/import/input";
 import SelectPage from "../pages/components/data/import/select";
+import TestPage from "../pages/test/index"
 
 const router=  createBrowserRouter([
     {
@@ -65,6 +66,10 @@ const router=  createBrowserRouter([
     {
         path: "/develop",
         element: <DevelopPage />
+    },
+    {
+        path: "/test",
+        element: <TestPage />
     }
 ])
 

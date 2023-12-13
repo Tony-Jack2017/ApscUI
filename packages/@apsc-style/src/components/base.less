@@ -1,8 +1,6 @@
 @import "../var";
 @import "../common/minix";
 
-@borderOpacityList: 100% 75% 50% 30% 10%;
-@bgOpacityList: 100% 85% 50% 40% 30% 20% 10%;
 @scaleSize: var(--scaleSize, 0.95);
 
 .apsc-button {
@@ -53,13 +51,15 @@
   position: relative;
   border-radius: 100px;
   padding: 2px 4px;
+  transition: all 0.3s ease-in-out;
   .apsc-switch-button {
     position: absolute;
     .Pos_ads_center_vertical();
     display: block;
     background-color: white;
     transition: width 0.1s linear,
-    left 0.3s ease-in-out;
+    left 0.3s ease-in-out,
+    right 0.3s ease-in-out;
     border-radius: 100px;
     z-index: 1;
 
@@ -89,6 +89,7 @@
         width: 24px;
       }
     }
+
     &.apsc-switch_unchecked {
       background-color: rgba(0, 0, 0, 0.14);
       .apsc-switch-button {
@@ -101,7 +102,7 @@
     &.apsc-switch_checked {
       background-color: rgba(0, 0, 0, 0.14);
       .apsc-switch-button {
-        left: 32px;
+        left: calc(100% - 24px);
       }
       .apsc-switch-background {
         width: 100%;
