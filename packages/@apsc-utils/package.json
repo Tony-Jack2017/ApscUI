@@ -1,7 +1,7 @@
 {
-  "name": "@apsc/style",
+  "name": "@apsc/utils",
   "version": "1.0.0",
-  "description": "Apsc style package",
+  "description": "Apsc utils package",
   "author": "LTX",
   "license": "MIT"
 }

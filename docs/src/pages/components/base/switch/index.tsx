@@ -22,7 +22,7 @@ const SwitchPage = () => {
                 <Code />
                 <div className="flex-cc" style={{height: "100%"}}>
                     <Switch isChecked={checked} onClick={handleClick} />
-                    <Switch type="outside" isChecked={checked} onClick={handleClick} />
+                    <Switch type="outside"/>
                 </div>
             </Demo>
         </div>
