@@ -33,9 +33,9 @@ const ButtonPage = () => {
             <Demo>
                 <Code />
                 <div className="flex-cc" style={{height: "100%"}}>
-                    <Button color="green">Success</Button>
-                    <Button color="red" type="outline">Dangerous</Button>
-                    <Button color="yellow" type="text">Warning</Button>
+                    <Button color="0, 128, 0">Success</Button>
+                    <Button color="255, 0, 0" type="outline">Dangerous</Button>
+                    <Button color="255, 165, 0" type="text">Warning</Button>
                 </div>
             </Demo>
         </div>

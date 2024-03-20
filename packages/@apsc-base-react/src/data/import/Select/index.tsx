@@ -1,6 +1,6 @@
 import React from "react";
 
-const Select = () => {
+const Index = () => {
     return (
         <div className="apis-select">
 
@@ -8,4 +8,4 @@ const Select = () => {
     )
 }
 
-export default Select
+export default Index

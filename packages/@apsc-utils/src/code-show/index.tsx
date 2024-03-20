@@ -1,4 +1,10 @@
-import {FC} from "react";
+import {FC, Fragment} from "react";
+import "./index.less"
+import dedent from 'dedent'
+import {highlight, languages} from "prismjs";
+import 'prismjs/components/prism-jsx'
+
+
 
 export type CodeShowProps = {
   code: string
@@ -9,9 +15,10 @@ export type CodeFilterProps = {
   codeItem: string
 }
 
-function getCodeInfo(code:string) {
-  const codeInfo = code.split("\n")
-  return codeInfo
+function handleCodeInfo(code:string) :string {
+  const codeStr = dedent(code)
+  console.log(highlight(codeStr, languages.jsx!, 'jsx'))
+  return highlight(codeStr, languages.jsx!, 'jsx')
 }
 
 
@@ -20,15 +27,12 @@ const CodeFilter:FC<CodeFilterProps> = (props) => {
   return (
     <code className="code-item">
       {
-        codeItem.split(" ").map((item, index) => {
-          return item == ""
-            ? `\u00A0`
-            : (
+        codeItem.split(/\s+/).map((item, index) => {
+          return (
               <span key={index}>
-                {`\u00A0`}
                  {item}
               </span>
-            )
+          )
         })
       }
     </code>
@@ -41,16 +45,16 @@ const CodeShow:FC<CodeShowProps> = (props) => {
     showLine = false
   } = props
   return (
-    <pre>
+      <pre className="code-show" dangerouslySetInnerHTML={ { __html: handleCodeInfo(code) } }>
       {
-        getCodeInfo(code).map((item, index) => {
-          return (
-            <p key={index}>
-              { showLine && <span>{index}</span> }
-              <CodeFilter codeItem={item} />
-            </p>
-          )
-        })
+        // handleCodeInfo(code).split("\n").map((item, index) => {
+        //   return (
+        //       <Fragment key={index}>
+        //         {item}
+        //       </Fragment>
+        //   )
+        // })
+
       }
     </pre>
   )

@@ -1,6 +1,10 @@
 const PLUGIN_NAME = 'apis-webpack-plugin';
 const chalk = require('chalk')
 module.exports = class MyWebpackPlugin {
+
+  constructor() {
+  }
+
   apply(compiler) {
     // you can access Logger from compiler
     const logger = compiler.getInfrastructureLogger(PLUGIN_NAME);

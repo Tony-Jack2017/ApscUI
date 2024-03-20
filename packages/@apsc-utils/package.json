@@ -3,5 +3,9 @@
   "version": "1.0.0",
   "description": "Apsc utils package",
   "author": "LTX",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "dedent": "^1.5.1",
+    "prismjs": "^1.29.0"
+  }
 }

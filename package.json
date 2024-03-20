@@ -1,5 +1,5 @@
 {
-  "name": "APSC",
+  "name": "APSC_UI",
   "version": "1.0.0",
   "main": "index.js",
   "author": "LTX",
@@ -9,9 +9,7 @@
     "docs": "node ./scripts/docs.js",
     "build": "node ./scripts/build.js"
   },
-  "dependencies": {
-    "yarn": "^1.22.21"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@babel/cli": "^7.21.0",
     "@babel/core": "^7.21.0",
@@ -27,6 +25,7 @@
     "react-dom": "^18.2.0",
     "rollup": "^3.17.3",
     "typescript": "^4.9.5",
+    "vite": "^5.1.6",
     "vue": "^3.2.47",
     "webpack": "^5.76.1",
     "webpack-dev-server": "^4.13.2"

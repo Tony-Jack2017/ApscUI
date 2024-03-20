@@ -1,4 +1,4 @@
-@import "../var";
+@import "../common/var";
 @import "../common/minix";
 
 @scaleSize: var(--scaleSize, 0.95);
@@ -16,33 +16,33 @@
   // fill Type
   &_fill {
     color: #ffffff;
-    background-color: @apsc-primary-color;
+    background-color: rgba(@apsc-primary-color, 1);
     box-shadow: 0px 4px 4px rgba(0, 0, 0, .1);
     &:hover {
       box-shadow: 0px 2px 4px rgba(0, 0, 0, .2),
                   2px 0px 4px rgba(0, 0, 0, .1);
-      background-color: @apsc-primary-color;
+      background-color:  rgba(@apsc-primary-color, 1);
     }
   }
   // outline Type
   &_outline {
-    color: rgba(0, 22, 201, 0.85);;
+    color: rgba(@apsc-primary-color, 0.85);
     background-color: transparent;
-    border: 1px solid rgba(0, 22, 201, 0.5);
+    border: 1px solid rgba(@apsc-primary-color, 1);
     &:hover {
-      color: @apsc-primary-color;
-      border-color: @apsc-primary-color;
-      background-color: rgba(0, 22, 201, 0.05);
+      color: rgba(@apsc-primary-color, 0.75);
+      border-color:  rgba(@apsc-primary-color, 0.75);
+      background-color: rgba(@apsc-primary-color, 0.05);
     }
   }
   // text Type
   &_text {
-    color: rgba(0, 22, 201, 0.85);;
+    color: rgba(@apsc-primary-color, 0.85);
     background-color: transparent;
     &:hover {
-      color: @apsc-primary-color;
-      border-color: @apsc-primary-color;
-      background-color: rgba(0, 22, 201, 0.05);
+      color: rgba(@apsc-primary-color, 1);
+      border-color: rgba(@apsc-primary-color, 0.15);
+      background-color: rgba(@apsc-primary-color, 0.05);
     }
   }
 }
