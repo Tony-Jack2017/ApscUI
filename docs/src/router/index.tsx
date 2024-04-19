@@ -5,10 +5,10 @@ import ButtonPage from "../pages/components/base/button";
 import NotFoundPage from "../pages/common/not_found";
 import DevelopPage from "../pages/develop";
 import SwitchPage from "../pages/components/base/switch";
-import ListPage from "../pages/components/data/display/list";
-import TablePage from "../pages/components/data/display/table";
-import InputPage from "../pages/components/data/import/input";
-import SelectPage from "../pages/components/data/import/select";
+import ListPage from "../pages/components/data-display/list";
+import TablePage from "../pages/components/data-display/table";
+import InputPage from "../pages/components/data-import/input";
+import SelectPage from "../pages/components/data-import/select";
 import TestPage from "../pages/test/index"
 
 const router=  createBrowserRouter([

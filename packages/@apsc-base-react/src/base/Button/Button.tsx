@@ -4,7 +4,6 @@ import classNames from "classnames";
 import {ButtonProps} from "./Button.types";
 
 const Button:FC<ButtonProps> = (props) => {
-
     const {
         type = "fill",
         color,
@@ -14,9 +13,7 @@ const Button:FC<ButtonProps> = (props) => {
         "apsc-button hello",
         `apsc-button_${type}`
     ])
-
     const myRef = useRef<HTMLDivElement>(null);
-
     useEffect(() => {
         if(color) {
             if(myRef.current) {
@@ -24,7 +21,6 @@ const Button:FC<ButtonProps> = (props) => {
             }
         }
     }, [color])
-
     return (
         <div className={classes} ref={myRef}>
             { children ? children : 'Button' }

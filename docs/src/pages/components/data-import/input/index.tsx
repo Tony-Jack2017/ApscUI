@@ -1,6 +1,6 @@
 import {ApscInput} from "@apsc/base-react";
-import Demo from "../../../../../components/contents/demo";
-import Code from "../../../../../components/contents/code";
+import Demo from "../../../../components/contents/demo";
+import Code from "../../../../components/contents/code";
 
 const InputPage = () => {
     return (

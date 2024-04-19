@@ -1,3 +1,5 @@
+import "./select.scss"
+
 const SelectPage = () => {
     return (
         <div className="select-page">
