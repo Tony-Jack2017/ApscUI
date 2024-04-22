@@ -1,10 +1,15 @@
-import MainLayout from "../../components/layout/common/main-layout";
+import SidebarLayout from "../../components/layout/common/sidebar-layout";
+import CompSidebar from "../../components/layout/base/sidebar";
+import {Outlet} from "react-router-dom";
+import {DevelopMenuList} from "../../common/menus";
 
 const DevelopPage = () => {
     return (
         <div className="develop-page">
-            <MainLayout>
-            </MainLayout>
+            <SidebarLayout>
+                <CompSidebar list={DevelopMenuList} />
+                <Outlet />
+            </SidebarLayout>
         </div>
     )
 }

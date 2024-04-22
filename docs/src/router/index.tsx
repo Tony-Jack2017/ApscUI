@@ -1,15 +1,23 @@
 import {createBrowserRouter} from "react-router-dom";
+
+//  Layout
 import HomePage from "../pages/home";
 import ComponentsPage from "../pages/components";
+import DevelopPage from "../pages/develop";
+
 import ButtonPage from "../pages/components/base/button";
 import NotFoundPage from "../pages/common/not_found";
-import DevelopPage from "../pages/develop";
 import SwitchPage from "../pages/components/base/switch";
 import ListPage from "../pages/components/data-display/list";
 import TablePage from "../pages/components/data-display/table";
 import InputPage from "../pages/components/data-import/input";
 import SelectPage from "../pages/components/data-import/select";
+
+import DesignColorPage from "../pages/develop/Design/color";
+import DesignFontPage from "../pages/develop/Design/font";
+
 import TestPage from "../pages/test/index"
+
 
 const router=  createBrowserRouter([
     {
@@ -65,7 +73,23 @@ const router=  createBrowserRouter([
     },
     {
         path: "/develop",
-        element: <DevelopPage />
+        element: <DevelopPage />,
+        errorElement: <NotFoundPage />,
+        children: [
+            {
+                path: "design",
+                children: [
+                    {
+                        path: "color",
+                        element: <DesignColorPage />
+                    },
+                    {
+                        path: "font",
+                        element: <DesignFontPage />
+                    }
+                ]
+            },
+        ]
     },
     {
         path: "/test",

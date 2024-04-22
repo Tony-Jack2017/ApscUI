@@ -1,3 +1,20 @@
 @function tint($color, $percentage) {
   @return mix(white, $color, $percentage)
 }
+
+@function shade($color, $percentage) {
+  @return mix(black, $color, $percentage)
+}
+
+@function generateTint($color, $number) {
+  $listTint: ();
+  $listShade: ();
+  $listBase: ($color);
+  @for $n from 1 through ($number - 1) {
+    $listTint: append($listTint, tint($color, calc(100% - 100% / $number * $n)));
+  }
+  @for $n from 1 through ($number - 1) {
+    $listShade: append($listShade, shade($color, calc(100% / $number * $n)));
+  }
+  @return join($listTint, join($listBase, $listShade));
+}

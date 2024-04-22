@@ -1,8 +1,15 @@
-import {CompMenuList} from "../../../../common/menus";
-import {Fragment} from "react";
+import React, {Fragment} from "react";
 import {NavLink} from "react-router-dom";
+import {SidebarMenuProp} from "../../../../common/menus";
 
-const CompSidebar = () => {
+interface CompSidebarProp {
+    list: SidebarMenuProp[]
+}
+
+const CompSidebar:React.FC<CompSidebarProp> = (props) => {
+
+    const { list } = props
+
   return (
     <div className="comp-sidebar">
       <div className="comp-sidebar-header">
@@ -10,7 +17,7 @@ const CompSidebar = () => {
       <div className="comp-sidebar-content">
         <div className="sidebar-content-menu">
           {
-            CompMenuList.map((item, index) => {
+            list.map((item, index) => {
               return (
                 <Fragment key={index}>
                   {

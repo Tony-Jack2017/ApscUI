@@ -1,21 +1,31 @@
-type NavRightMenuProp = {
+import Sidebar from "../../components/layout/base/sidebar";
+
+export type NavRightMenuProp = {
     icon ?: string
     name ?: string
     path : string
     isIconItem ?: boolean | false
 }
 
-type CompMenuProp = {
+
+export interface SidebarMenuProp {
     id: string
     icon ?: string
     title : string
     isGroup ?: boolean | false
-    tag ?: string
     path ?: string
     children ?: CompMenuProp[]
 }
 
-const NrMenuList: NavRightMenuProp[] = [
+export interface CompMenuProp extends SidebarMenuProp {
+    tag ?: string
+}
+
+export interface DevelopMenuProp extends SidebarMenuProp {
+    tag ?: string
+}
+
+export const NrMenuList: NavRightMenuProp[] = [
     {
         name: "Develop",
         path: "/develop"
@@ -36,7 +46,7 @@ const NrMenuList: NavRightMenuProp[] = [
     }
 ]
 
-const CompMenuList: CompMenuProp[]  = [
+export const CompMenuList: CompMenuProp[]  = [
     {
         id: "0",
         title: "Base Components",
@@ -90,7 +100,22 @@ const CompMenuList: CompMenuProp[]  = [
     }
 ]
 
-export {
-    NrMenuList,
-    CompMenuList,
-}
+export const DevelopMenuList: DevelopMenuProp[]  = [
+    {
+        id: "0",
+        title: "Apsc Design",
+        isGroup: true,
+        children: [
+            {
+                id: "0-1",
+                title: "Color",
+                path: "/develop/design/color"
+            },
+            {
+                id: "0-2",
+                title: "Font",
+                path: "/develop/design/font"
+            }
+        ]
+    },
+]
