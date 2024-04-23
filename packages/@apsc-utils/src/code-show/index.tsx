@@ -1,64 +1,46 @@
-import {FC, Fragment} from "react";
+import {FC} from "react";
 import "./index.less"
 import dedent from 'dedent'
 import {highlight, languages} from "prismjs";
 import 'prismjs/components/prism-jsx'
-
-
+import 'prismjs/components/prism-clike';
+import 'prismjs/components/prism-typescript';
+import 'prismjs/themes/prism.css';
 
 export type CodeShowProps = {
-  code: string
-  showLine?: boolean
+    code: string
+    showLine?: boolean
 }
-
 export type CodeFilterProps = {
-  codeItem: string
+    codeItem: string
 }
 
-function handleCodeInfo(code:string) :string {
-  const codeStr = dedent(code)
-  console.log(highlight(codeStr, languages.jsx!, 'jsx'))
-  return highlight(codeStr, languages.jsx!, 'jsx')
+function handleCodeInfo(code: string): (string) {
+    return highlight(dedent(code), languages.jsx!, 'jsx')
 }
+const CodeShow: FC<CodeShowProps> = (props) => {
+    const {
+        code,
+        showLine = false
+    } = props
 
-
-const CodeFilter:FC<CodeFilterProps> = (props) => {
-  const { codeItem } = props
-  return (
-    <code className="code-item">
-      {
-        codeItem.split(/\s+/).map((item, index) => {
-          return (
-              <span key={index}>
-                 {item}
-              </span>
-          )
-        })
-      }
-    </code>
-  )
+    const codeArr = handleCodeInfo(code).split(/\n/)
+    return (
+        <code>
+            <pre className="code-show">
+                {
+                    codeArr.map((item, index) => {
+                        return (
+                            <div className="code-item" key={index}>
+                                { showLine ? <span className="line-number">{index + 1}</span> : null }
+                                <div className="item-content" dangerouslySetInnerHTML={{__html: item}}></div>
+                            </div>
+                        )
+                    })
+                }
+            </pre>
+        </code>
+    )
 }
-
-const CodeShow:FC<CodeShowProps> = (props) => {
-  const {
-    code ,
-    showLine = false
-  } = props
-  return (
-      <pre className="code-show" dangerouslySetInnerHTML={ { __html: handleCodeInfo(code) } }>
-      {
-        // handleCodeInfo(code).split("\n").map((item, index) => {
-        //   return (
-        //       <Fragment key={index}>
-        //         {item}
-        //       </Fragment>
-        //   )
-        // })
-
-      }
-    </pre>
-  )
-}
-
 
 export default CodeShow

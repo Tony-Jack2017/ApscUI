@@ -1,13 +1,18 @@
 import Demo from "../../../../components/contents/demo";
-import Code from "../../../../components/contents/code";
-import {Button} from "@apsc/base-react";
 import Switch from "@apsc/base-react/src/base/Switch/Switch";
 import {useState} from "react";
+import CodeShow from "@apsc/utils/src/code-show";
+
+const codeString =
+    `
+  function test() {
+    return "Hello World"
+  }
+`
 
 const SwitchPage = () => {
 
     const [checked, setChecked] = useState(false)
-
     const handleClick = () => {
         setChecked(!checked)
     }
@@ -19,7 +24,7 @@ const SwitchPage = () => {
                 Basic Switch
             </h3>
             <Demo>
-                <Code />
+                <CodeShow code={codeString} showLine={true}/>
                 <div className="flex-cc" style={{height: "100%"}}>
                     <Switch isChecked={checked} onClick={handleClick} />
                     <Switch type="outside"/>

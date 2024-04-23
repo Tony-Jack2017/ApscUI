@@ -6004,11 +6004,6 @@ react-router@6.15.0:
   dependencies:
     "@remix-run/router" "1.8.0"
 
-react-simple-code-editor@^0.13.1:
-  version "0.13.1"
-  resolved "https://registry.npmjs.org/react-simple-code-editor/-/react-simple-code-editor-0.13.1.tgz"
-  integrity sha512-XYeVwRZwgyKtjNIYcAEgg2FaQcCZwhbarnkJIV20U2wkCU9q/CPFBo8nRXrK4GXUz3AvbqZFsZRrpUTkqqEYyQ==
-
 react@^18.2.0:
   version "18.2.0"
   resolved "https://registry.npmjs.org/react/-/react-18.2.0.tgz"

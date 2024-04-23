@@ -1,6 +1,13 @@
 import Demo from "../../../../components/contents/demo";
-import Code from "../../../../components/contents/code";
 import {Button} from "@apsc/base-react";
+import CodeShow from "@apsc/utils/src/code-show";
+
+const codeString =
+`
+  function test() {
+    return "Hello World"
+  }
+`
 
 const ButtonPage = () => {
     return (
@@ -17,7 +24,7 @@ const ButtonPage = () => {
                 The Basic Button are 3 type button which are "fill", "outline" and "text"
             </p>
             <Demo>
-                <Code />
+                <CodeShow code={codeString} showLine={true}/>
                 <div className="flex-cc" style={{height: "100%"}}>
                     <Button>Fill Type</Button>
                     <Button type="outline">Outline Type</Button>
@@ -31,7 +38,7 @@ const ButtonPage = () => {
                 You can custom the color of the button for the basic button
             </p>
             <Demo>
-                <Code />
+                <CodeShow code={codeString} showLine={true}/>
                 <div className="flex-cc" style={{height: "100%"}}>
                     <Button color="0, 128, 0">Success</Button>
                     <Button color="255, 0, 0" type="outline">Dangerous</Button>
