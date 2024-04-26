@@ -1,9 +1,22 @@
-import React from "react"
+import React, {ReactElement} from "react"
+import classNames from "classnames";
 
-const Container = (props: any) => {
+export type ContainerProps = {
+    type: "page" | "content"
+    children: ReactElement[] | ReactElement
+}
+
+const Container:React.FC<ContainerProps> = (props) => {
+
+    const { type, children } = props
+    const classes = classNames([
+        "apsc-docs-layout-container",
+        `container-${type}`
+    ])
+
     return (
-        <div className="apsc-docs-layout-container">
-            {props.children}
+        <div className={classes}>
+            {children}
         </div>
     )
 }

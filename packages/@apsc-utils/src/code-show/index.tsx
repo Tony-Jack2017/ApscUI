@@ -31,7 +31,7 @@ const CodeShow: FC<CodeShowProps> = (props) => {
                 {
                     codeArr.map((item, index) => {
                         return (
-                            <div className="code-item" key={index}>
+                            <div className={`code-item ${showLine ? 'item-showLine' : ''}`} key={index}>
                                 { showLine ? <span className="line-number">{index + 1}</span> : null }
                                 <div className="item-content" dangerouslySetInnerHTML={{__html: item}}></div>
                             </div>

@@ -1,5 +1,6 @@
 import Header from "../base/header";
 import React, {ReactElement} from "react";
+import Container from "../base/container";
 
 type SidebarLayoutProps = {
     children : ReactElement[]
@@ -14,7 +15,9 @@ const SidebarLayout:React.FC<SidebarLayoutProps> = ({children}) => {
                     {children[0]}
                 </div>
                 <div className="layout-content-main">
-                    {children[1]}
+                    <Container type="page">
+                        {children[1]}
+                    </Container>
                 </div>
             </main>
         </div>

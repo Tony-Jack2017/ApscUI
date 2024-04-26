@@ -1,17 +1,31 @@
 import Demo from "../../../../components/contents/demo";
 import {Button} from "@apsc/base-react";
 import CodeShow from "@apsc/utils/src/code-show";
+import {ButtonClickInterface} from "@apsc/base-react/src/base/Button/Button.types";
 
 const codeString =
 `
-  function test() {
-    return "Hello World"
+  function HelloWorld() {
+    return "Hello World !!!"
   }
 `
 
+const handleClick = ():ButtonClickInterface => {
+    return {
+        type: "sync",
+        callback: (setStatus) => {
+            setTimeout(() => {
+                if(setStatus) {
+                    setStatus("success")
+                }
+            }, 3000)
+        }
+    }
+}
+
 const ButtonPage = () => {
     return (
-        <div className="container-page button-page">
+        <div className="button-page">
             <h1>Button Component</h1>
             <p>
                 As the main call-to-action page element, button has many changes in the interface and style of different websites. As a developer, in order to achieve the effect of UI,
@@ -24,9 +38,9 @@ const ButtonPage = () => {
                 The Basic Button are 3 type button which are "fill", "outline" and "text"
             </p>
             <Demo>
-                <CodeShow code={codeString} showLine={true}/>
+                <CodeShow code={codeString}/>
                 <div className="flex-cc" style={{height: "100%"}}>
-                    <Button>Fill Type</Button>
+                    <Button onClick={handleClick()}>Fill Type</Button>
                     <Button type="outline">Outline Type</Button>
                     <Button type="text">Text Type</Button>
                 </div>
@@ -38,7 +52,7 @@ const ButtonPage = () => {
                 You can custom the color of the button for the basic button
             </p>
             <Demo>
-                <CodeShow code={codeString} showLine={true}/>
+                <CodeShow code={codeString}/>
                 <div className="flex-cc" style={{height: "100%"}}>
                     <Button color="0, 128, 0">Success</Button>
                     <Button color="255, 0, 0" type="outline">Dangerous</Button>

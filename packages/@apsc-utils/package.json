@@ -5,6 +5,7 @@
   "author": "LTX",
   "license": "MIT",
   "dependencies": {
+    "@apsc/resource": "1.0.0",
     "dedent": "^1.5.1",
     "prismjs": "^1.29.0"
   }

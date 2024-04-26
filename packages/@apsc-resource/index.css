@@ -1,0 +1,19 @@
+@font-face {
+    font-family: "jetbrain-mono";
+    src: url("./fonts/webfonts/JetBrainsMono-Bold.woff2") format("woff2");
+    src: url("./fonts/webfonts/JetBrainsMono-BoldItalic.woff2") format("woff2");
+    src: url("./fonts/webfonts/JetBrainsMono-ExtraBold.woff2") format("woff2");
+    src: url("./fonts/webfonts/JetBrainsMono-ExtraBoldItalic.woff2") format("woff2");
+    src: url("./fonts/webfonts/JetBrainsMono-ExtraLight.woff2") format("woff2");
+    src: url("./fonts/webfonts/JetBrainsMono-ExtraLightItalic.woff2") format("woff2");
+    src: url("./fonts/webfonts/JetBrainsMono-Italic.woff2") format("woff2");
+    src: url("./fonts/webfonts/JetBrainsMono-Light.woff2") format("woff2");
+    src: url("./fonts/webfonts/JetBrainsMono-LightItalic.woff2") format("woff2");
+    src: url("./fonts/webfonts/JetBrainsMono-Medium.woff2") format("woff2");
+    src: url("./fonts/webfonts/JetBrainsMono-MediumItalic.woff2") format("woff2");
+    src: url("./fonts/webfonts/JetBrainsMono-Regular.woff2") format("woff2");
+    src: url("./fonts/webfonts/JetBrainsMono-SemiBold.woff2") format("woff2");
+    src: url("./fonts/webfonts/JetBrainsMono-SemiBoldItalic.woff2") format("woff2");
+    src: url("./fonts/webfonts/JetBrainsMono-Thin.woff2") format("woff2");
+    src: url("./fonts/webfonts/JetBrainsMono-ThinItalic.woff2") format("woff2");
+}

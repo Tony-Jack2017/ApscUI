@@ -4,7 +4,7 @@ import {useState} from "react";
 import CodeShow from "@apsc/utils/src/code-show";
 
 const codeString =
-    `
+`
   function test() {
     return "Hello World"
   }
@@ -24,7 +24,7 @@ const SwitchPage = () => {
                 Basic Switch
             </h3>
             <Demo>
-                <CodeShow code={codeString} showLine={true}/>
+                <CodeShow code={codeString}/>
                 <div className="flex-cc" style={{height: "100%"}}>
                     <Switch isChecked={checked} onClick={handleClick} />
                     <Switch type="outside"/>

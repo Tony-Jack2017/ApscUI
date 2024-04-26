@@ -4,12 +4,19 @@
 @scaleSize: var(--scaleSize, 0.95);
 
 .apsc-button {
+  border: none;
+  font-size: 16px;
+  font-family: inherit;
+  line-height: 24px;
   position: relative;
   display: inline-block;
   padding: 0.35rem 1rem;
   border-radius: 4px;
   cursor: pointer;
   transition: all 0.1s;
+  &-bg, &-extra {
+    position: absolute;
+  }
   &:active {
     transform: scale(@scaleSize);
   }
