@@ -2,13 +2,15 @@ import React, {ReactElement} from "react";
 
 export type ButtonState = {
     status: "normal" | "pending" | "success" | "failed"
+    statusDisabled: boolean
+    disabled: boolean
 }
 
 type status = string
 
 export interface ButtonClickInterface {
     type: "normal" | "sync"
-    callback?: (set?: React.Dispatch<React.SetStateAction<ButtonState["status"]>>) => any
+    callback?: (set?: React.Dispatch<React.SetStateAction<ButtonState>>) => any
 }
 
 export type ButtonProps = {

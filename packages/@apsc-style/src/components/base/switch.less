@@ -1,58 +1,5 @@
-@import "../common/var";
-@import "../common/minix";
-
-@scaleSize: var(--scaleSize, 0.95);
-
-.apsc-button {
-  border: none;
-  font-size: 16px;
-  font-family: inherit;
-  line-height: 24px;
-  position: relative;
-  display: inline-block;
-  padding: 0.35rem 1rem;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: all 0.1s;
-  &-bg, &-extra {
-    position: absolute;
-  }
-  &:active {
-    transform: scale(@scaleSize);
-  }
-  // fill Type
-  &_fill {
-    color: #ffffff;
-    background-color: rgba(@apsc-primary-color, 1);
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, .1);
-    &:hover {
-      box-shadow: 0px 2px 4px rgba(0, 0, 0, .2),
-                  2px 0px 4px rgba(0, 0, 0, .1);
-      background-color:  rgba(@apsc-primary-color, 1);
-    }
-  }
-  // outline Type
-  &_outline {
-    color: rgba(@apsc-primary-color, 0.85);
-    background-color: transparent;
-    border: 1px solid rgba(@apsc-primary-color, 1);
-    &:hover {
-      color: rgba(@apsc-primary-color, 0.75);
-      border-color:  rgba(@apsc-primary-color, 0.75);
-      background-color: rgba(@apsc-primary-color, 0.05);
-    }
-  }
-  // text Type
-  &_text {
-    color: rgba(@apsc-primary-color, 0.85);
-    background-color: transparent;
-    &:hover {
-      color: rgba(@apsc-primary-color, 1);
-      border-color: rgba(@apsc-primary-color, 0.15);
-      background-color: rgba(@apsc-primary-color, 0.05);
-    }
-  }
-}
+@import "../../common/var";
+@import "../../common/minix";
 
 .apsc-switch {
   position: relative;
@@ -149,3 +96,7 @@
   }
 
 }
+
+
+
+

@@ -16,7 +16,12 @@ const handleClick = ():ButtonClickInterface => {
         callback: (setStatus) => {
             setTimeout(() => {
                 if(setStatus) {
-                    setStatus("success")
+                    setStatus((pre) => {
+                        return {
+                            ...pre,
+                            status: "success"
+                        }
+                    })
                 }
             }, 3000)
         }
@@ -40,7 +45,7 @@ const ButtonPage = () => {
             <Demo>
                 <CodeShow code={codeString}/>
                 <div className="flex-cc" style={{height: "100%"}}>
-                    <Button onClick={handleClick()}>Fill Type</Button>
+                    <Button >Fill Type</Button>
                     <Button type="outline">Outline Type</Button>
                     <Button type="text">Text Type</Button>
                 </div>
