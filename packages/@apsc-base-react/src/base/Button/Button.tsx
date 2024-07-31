@@ -86,7 +86,6 @@ const Button:FC<ButtonProps> = (props) => {
         }, 1000)
     }
 
-
     return (
         <button className={classes} ref={myRef} onClick={ disabled ? undefined : _status.status != "normal" ? undefined : _handleClick} onMouseDown={_handleMouseDown}>
             <div className="apsc-button-bg" ref={buttonBg} />

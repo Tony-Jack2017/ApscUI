@@ -1,13 +1,9 @@
-import Sidebar from "../../components/layout/base/sidebar";
-
 export type NavRightMenuProp = {
     icon ?: string
     name ?: string
     path : string
     isIconItem ?: boolean | false
 }
-
-
 export interface SidebarMenuProp {
     id: string
     icon ?: string
@@ -16,16 +12,16 @@ export interface SidebarMenuProp {
     path ?: string
     children ?: CompMenuProp[]
 }
-
 export interface CompMenuProp extends SidebarMenuProp {
     tag ?: string
 }
-
 export interface DevelopMenuProp extends SidebarMenuProp {
     tag ?: string
 }
 
-export const NrMenuList: NavRightMenuProp[] = [
+
+
+const NrMenuList: NavRightMenuProp[] = [
     {
         name: "Develop",
         path: "/develop"
@@ -45,8 +41,7 @@ export const NrMenuList: NavRightMenuProp[] = [
         path: "/"
     }
 ]
-
-export const CompMenuList: CompMenuProp[]  = [
+const CompMenuList: CompMenuProp[]  = [
     {
         id: "0",
         title: "Base Components",
@@ -99,8 +94,7 @@ export const CompMenuList: CompMenuProp[]  = [
         ]
     }
 ]
-
-export const DevelopMenuList: DevelopMenuProp[]  = [
+const DevelopMenuList: DevelopMenuProp[]  = [
     {
         id: "0",
         title: "Apsc Design",
@@ -118,4 +112,30 @@ export const DevelopMenuList: DevelopMenuProp[]  = [
             }
         ]
     },
+    {
+        id: "1",
+        title: "Design Resource",
+        isGroup: true,
+        children: [
+            {
+                id: "1-1",
+                title: "UI resource",
+                path: "/develop/design/resource"
+            },
+            {
+                id: "1-2",
+                title: "UI Icon",
+                path: "/develop/design/icon"
+            }
+        ]
+    }
 ]
+const ResourceMenuList = []
+
+
+
+export {
+    NrMenuList,
+    CompMenuList,
+    DevelopMenuList
+}
