@@ -10,7 +10,7 @@ type status = string
 
 export interface ButtonClickInterface {
     type: "normal" | "sync"
-    callback?: (set?: React.Dispatch<React.SetStateAction<ButtonState>>) => any
+    callback?: (set?: React.Dispatch<React.SetStateAction<ButtonState>>) => void
 }
 
 export type ButtonProps = {

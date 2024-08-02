@@ -1,11 +1,12 @@
 import React, {ReactElement, ReactNode} from "react";
 import classNames from "classnames";
 
-type ItemType = {
+export type ItemType = {
   type: "normal" | "customer" | "link"
   icon?: string | ReactNode
   title?: string
   path?: string
+  subOpenType?: "inline" | "other"
   children?: ItemType[]
 }
 
@@ -22,7 +23,12 @@ const MenuItem:React.FC<MenuItemItf> = (props) => {
   const menuItemClasses = classNames()
   return (
     <li className={menuItemClasses}>
-      { children }
+      { children
+        ? children
+        : <div>
+            <span>{title}</span>
+          </div>
+      }
     </li>
   )
 }
@@ -43,11 +49,11 @@ const SubMenu:React.FC<SubMenuItf> = (props) => {
 }
 
 interface MenuItf{
-  list: ItemType[]
-  children: ReactNode
+  list?: ItemType[]
+  children?: ReactNode
 }
 
-const Menu:React.FC<MenuItf> = (props) => {
+export const Menu:React.FC<MenuItf> = (props) => {
   const { list, children } = props
   const menuClasses = classNames()
   return (
@@ -55,7 +61,7 @@ const Menu:React.FC<MenuItf> = (props) => {
       <ul>
         { children }
         {
-          list.map((item, index) => {
+          list?.map((item, index) => {
             if(item.children) {
               return (<SubMenu list={item.children} />)
             }else {

@@ -1,0 +1,29 @@
+@import "../../common/var/common";
+@import "../../common/mixin/index";
+
+@wrapBackColor: var(--background-color);
+
+.apsc-wrap {
+  position: fixed;
+  z-index: 2024;
+  inset: 0;
+  .wrapBack {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background-color: @wrapBackColor;
+    transition: opacity 300ms cubic-bezier(0.4, 0, 0.2, 1);
+    &-visible {
+      opacity: 1;
+    }
+    &-invisible {
+      opacity: 0;
+    }
+  }
+  .wrapContent {
+    &-center {
+      .flex-cc();
+    }
+  }
+
+}
