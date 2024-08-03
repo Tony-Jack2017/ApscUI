@@ -61,7 +61,8 @@ const CompMenuList: CompMenuProp[] = [
       {id: "1-1", title: "List", path: "/components/display/list"},
       {id: "1-2", title: "Table", path: "/components/display/table"},
       {id: "1-3", title: "Menu", path: "/components/display/menu"},
-      {id: "1-4", title: "Dialog", path: "/components/display/dialog"}
+      {id: "1-4", title: "Dialog", path: "/components/display/dialog"},
+      {id: "1-5", title: "Popover", path: "/components/display/popover"}
     ]
   },
   {

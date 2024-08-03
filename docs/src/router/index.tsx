@@ -19,9 +19,9 @@ import ListPage from "../pages/components/data-display/list";
 import TablePage from "../pages/components/data-display/table";
 import MenuPage from "../pages/components/data-display/menu";
 import DialogPage from "../pages/components/data-display/dialog";
+import PopoverPage from "../pages/components/data-display/popover";
 
 import TestPage from "../pages/test/index"
-
 
 
 const router=  createBrowserRouter([
@@ -48,7 +48,8 @@ const router=  createBrowserRouter([
                     { path: "list", element: <ListPage /> },
                     { path: "table", element: <TablePage /> },
                     { path: "menu", element: <MenuPage /> },
-                    { path: "dialog", element: <DialogPage /> }
+                    { path: "dialog", element: <DialogPage /> },
+                    { path: "popover", element: <PopoverPage /> }
                 ]
             },
             {
