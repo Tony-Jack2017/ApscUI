@@ -34,10 +34,12 @@ const WrapPortal:React.FC<WrapPortalItf> = (props) => {
 
   useEffect(() => {
     if(show) {
-      document.body.style.position = "fixed"
+      document.getElementsByTagName('html')[0].style.overflow = "hidden"
+      document.body.className = "scroll-visible"
       dispatch({type: "OPEN_WRAP"})
     }else {
-      document.body.style.position = "static"
+      document.getElementsByTagName('html')[0].style.overflow = "auto"
+      document.body.className = ""
       dispatch({type: "CLOSE_WRAP"})
     }
   }, [show])
