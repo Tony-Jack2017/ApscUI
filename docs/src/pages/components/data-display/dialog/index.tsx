@@ -20,6 +20,9 @@ const DialogPage = () => {
       setVisible(true)
     }
   }
+  const handleClose = () => {
+    setVisible(false)
+  }
 
 
   return (
@@ -39,8 +42,8 @@ const DialogPage = () => {
         <CodeShow code={codeString}/>
         <div className="flex-cc" style={{height: "100%"}}>
           <Button onClick={handleOpen}>Click Me</Button>
-          <Dialog open={visible}>
-            <div style={{background: "white"}}>This is A Dialog</div>
+          <Dialog open={visible} onClose={handleClose}>
+            <div>This is A Dialog</div>
           </Dialog>
         </div>
       </Demo>

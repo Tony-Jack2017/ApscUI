@@ -3,27 +3,35 @@ import WrapPortal from "../../common/hoc/wrapPortal";
 
 interface DialogItf {
   open?: boolean
-  handleClose?: () => void
+  title?: string
+  onClose?: () => void
   children?: ReactNode
 }
 
+const DialogTitle: React.FC<{children: ReactNode}> = (props) => {
+  return (
+    <div className="apsc-dialog-title">
+      { props.children }
+    </div>
+  )
+}
+
 const Dialog: React.FC<DialogItf> = (props) => {
-
-  const { open = false,  handleClose,  children} = props
-
+  const { open = false, title, onClose, children} = props
   const innerClose = () => {
-    if(handleClose) {
-      handleClose()
+    if(onClose) {
+      onClose()
     }
   }
-
   return (
     <WrapPortal show={open} onClose={innerClose}>
       <div className="apsc-dialog">
+        { title && <DialogTitle>{ title }</DialogTitle> }
         { children ? children : "This is Dialog" }
       </div>
     </WrapPortal>
   )
 }
+
 
 export default Dialog

@@ -12,7 +12,7 @@
     inset: 0;
     z-index: -1;
     background-color: @wrapBackColor;
-    transition: opacity 300ms cubic-bezier(0.4, 0, 0.2, 1);
+    transition: opacity 1000ms ease-in-out;
     &-visible {
       opacity: 1;
     }
@@ -21,9 +21,10 @@
     }
   }
   .wrapContent {
+    height: 100%;
+
     &-center {
       .flex-cc();
     }
   }
-
 }

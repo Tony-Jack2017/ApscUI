@@ -29,13 +29,15 @@ const WrapPortal:React.FC<WrapPortalItf> = (props) => {
 
   const {
     show, position = "center", children,
-    backVisible = true
+    backVisible = true, onClose
   } = props
 
   useEffect(() => {
     if(show) {
+      document.body.style.position = "fixed"
       dispatch({type: "OPEN_WRAP"})
     }else {
+      document.body.style.position = "static"
       dispatch({type: "CLOSE_WRAP"})
     }
   }, [show])
@@ -57,6 +59,7 @@ const WrapPortal:React.FC<WrapPortalItf> = (props) => {
 
   const handleClick = () => {
     dispatch({type: "CLOSE_WRAP"})
+    onClose()
   }
 
   if(state.show) {
@@ -69,7 +72,7 @@ const WrapPortal:React.FC<WrapPortalItf> = (props) => {
       </div>
     ), document.body)
   }else {
-    return <div>{state.show}</div>
+    return null
   }
 }
 
