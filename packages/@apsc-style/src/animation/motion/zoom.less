@@ -1,0 +1,53 @@
+.animation-zoom {
+  animation-name: zoom;
+  animation-fill-mode: both;
+  animation-timing-function: ease-in-out;
+}
+
+.animation-zoom-round-appear {
+  transform-origin: top left;
+  animation-fill-mode: forwards;
+  animation-name: zoomIn;
+  overflow: hidden;
+}
+
+.animation-zoom-round-disappear {
+  animation-name: zoomOut;
+}
+
+@keyframes zoom {
+  from {
+    //transform: translateY(50%);
+    opacity: 0;
+  }
+  to {
+    //transform: translateY(0%);
+    opacity: 1;
+  }
+}
+
+@keyframes zoomIn {
+  from {
+    width: 0;
+    height: 0;
+    transform:translateX(-900px) translateY(-500px);
+    opacity: 0;
+  }
+  to {
+    width: min-content;
+    height:  min-content;
+    transform: scale(1) translateX(0) translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes zoomOut {
+  from {
+    transform: scale(1) translateX(0) translateY(0);
+    opacity: 1;
+  }
+  to {
+    transform: scale(0.3) translateX(var(--offset-x)px) translateY(var(--offset-y)px);
+    opacity: 0;
+  }
+}

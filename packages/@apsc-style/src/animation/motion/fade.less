@@ -1,0 +1,45 @@
+.animation-fade {
+  animation-name: fade;
+  animation-duration: .85s;
+  animation-fill-mode: both;
+  animation-timing-function: ease-in-out;
+}
+.animation-fade-round-appear {
+  animation-name: fadeIn;
+}
+.animation-fade-round-disappear {
+  animation-name: fadeOut;
+}
+
+@keyframes fade {
+  from {
+    //transform: translateY(50%);
+    opacity: 0;
+  }
+  to {
+    //transform: translateY(0%);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    transform: translateY(50%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0%);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    transform: translateY(0%);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(50%);
+    opacity: 0;
+  }
+}
