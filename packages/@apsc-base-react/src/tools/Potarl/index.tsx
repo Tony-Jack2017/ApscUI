@@ -1,4 +1,4 @@
-import React, {forwardRef, ReactNode, useEffect, useLayoutEffect, useState} from "react";
+import React, {CSSProperties, forwardRef, ReactNode, useEffect, useLayoutEffect, useState} from "react";
 import {createPortal} from "react-dom";
 import classNames from "classnames";
 import {ComWithChild} from "../../types/common";
@@ -21,6 +21,7 @@ export interface WrapPortalItf extends ComWithChild {
   show: boolean
   contentPos?: "center" | "custom" | "anchor"
   position?: Position
+  posStyle?: CSSProperties
   maskVisible?: boolean
   motionName?: string
   motionType?: "once" | "round"
@@ -32,6 +33,7 @@ const WrapPortal= forwardRef<HTMLDivElement, WrapPortalItf>((props, ref) => {
   const {
     show,
     position,
+    posStyle,
     contentPos = "center",
     motionName = "fade",
     motionType = "round",
@@ -95,7 +97,7 @@ const WrapPortal= forwardRef<HTMLDivElement, WrapPortalItf>((props, ref) => {
             animationType={animation.type}
             onAnimationEnd={handleAnimationEnd}
           >
-            <div className="apsc-wrap-content">
+            <div className="apsc-wrap-content" style={posStyle}>
               {children}
             </div>
           </Animation>

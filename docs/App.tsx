@@ -17,7 +17,7 @@ const App = () => {
     <div id="app">
       <button style={{margin: 200}} onClick={() => {setState(pre => !pre)}}>Click Me1</button>
       <button ref={trigger} style={{margin: 300}} onClick={() => {setState(pre => !pre)}}>Click Me2</button>
-      <Popover open={state} anchorEl={trigger.current as HTMLElement} >
+      <Popover open={state} anchorEl={trigger.current as HTMLElement} anchorPos="top" isArrow={true}>
         <div style={{backgroundColor: "red"}}>
           Hello World
         </div>
