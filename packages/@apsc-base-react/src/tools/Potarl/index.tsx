@@ -1,4 +1,4 @@
-import React, {ReactNode, useEffect, useLayoutEffect, useState} from "react";
+import React, {forwardRef, ReactNode, useEffect, useLayoutEffect, useState} from "react";
 import {createPortal} from "react-dom";
 import classNames from "classnames";
 import {ComWithChild} from "../../types/common";
@@ -10,12 +10,17 @@ import "@apsc/style/src/components/common/portal.less"
 
 
 
-export type PositionDetail = { top: string | number, left: string | number }
+export type Position = {
+  top: string | number
+  left: string | number
+  width: string | number
+  height: string | number
+}
 
 export interface WrapPortalItf extends ComWithChild {
   show: boolean
-  contentPosition?: "center" | "custom" | "anchor"
-  positionDetail?: PositionDetail
+  contentPos?: "center" | "custom" | "anchor"
+  position?: Position
   maskVisible?: boolean
   motionName?: string
   motionType?: "once" | "round"
@@ -23,12 +28,12 @@ export interface WrapPortalItf extends ComWithChild {
   children: ReactNode
 }
 
-const WrapPortal: React.FC<WrapPortalItf> = (props) => {
+const WrapPortal= forwardRef<HTMLDivElement, WrapPortalItf>((props, ref) => {
   const {
     show,
-    positionDetail,
-    contentPosition = "center",
-    motionName = "zoom",
+    position,
+    contentPos = "center",
+    motionName = "fade",
     motionType = "round",
     children,
     maskVisible = true,
@@ -48,13 +53,15 @@ const WrapPortal: React.FC<WrapPortalItf> = (props) => {
   const [visible, setVisible] = useState(show)
 
   const wrapContentClasses = classNames([
-    "wrapContent",
-    `wrapContent-${contentPosition}`
+    "apsc-wrap-container",
+    `apsc-wrap-container-${contentPos}`
   ])
 
   const innerStyle = {
-    top: positionDetail?.top,
-    left: positionDetail?.left
+    top: position?.top,
+    left: position?.left,
+    width: position?.width,
+    height: position?.height
   }
 
   useEffect(() => {
@@ -79,7 +86,7 @@ const WrapPortal: React.FC<WrapPortalItf> = (props) => {
     return createPortal((
       <div className="apsc-wrap-portal" tabIndex={-1}>
         {maskVisible && <Mask onClick={handleClick} />}
-        <div className={wrapContentClasses} style={innerStyle}>
+        <div ref={ref} className={wrapContentClasses} style={innerStyle}>
           <Animation
             fromAnchor={true}
             offset={[300, 300]}
@@ -88,7 +95,9 @@ const WrapPortal: React.FC<WrapPortalItf> = (props) => {
             animationType={animation.type}
             onAnimationEnd={handleAnimationEnd}
           >
-            {children}
+            <div className="apsc-wrap-content">
+              {children}
+            </div>
           </Animation>
         </div>
       </div>
@@ -96,6 +105,6 @@ const WrapPortal: React.FC<WrapPortalItf> = (props) => {
   } else {
     return null
   }
-}
+})
 
 export default WrapPortal

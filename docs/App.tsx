@@ -1,6 +1,7 @@
 
 import WrapPortal from "@apsc/base-react/src/tools/Potarl";
-import {useState} from "react";
+import {useRef, useState} from "react";
+import {Popover} from "@apsc/base-react";
 
 const App = () => {
 
@@ -10,13 +11,17 @@ const App = () => {
     setState(false)
   }
 
+  const trigger = useRef<HTMLButtonElement | null>(null)
+
   return (
     <div id="app">
-      <button onClick={() => {setState(pre => !pre)}}>Click Me</button>
-      <WrapPortal show={state} onClose={handleClose} >
-        <div style={{ width: 100, height: 100, backgroundColor: "white"}}>
+      <button style={{margin: 200}} onClick={() => {setState(pre => !pre)}}>Click Me1</button>
+      <button ref={trigger} style={{margin: 300}} onClick={() => {setState(pre => !pre)}}>Click Me2</button>
+      <Popover open={state} anchorEl={trigger.current as HTMLElement} >
+        <div style={{backgroundColor: "red"}}>
+          Hello World
         </div>
-      </WrapPortal>
+      </Popover>
     </div>
   )
 }
