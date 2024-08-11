@@ -1,7 +1,7 @@
 
-import WrapPortal from "@apsc/base-react/src/tools/Potarl";
 import {useRef, useState} from "react";
 import {Popover} from "@apsc/base-react";
+import "@apsc/style/src/components/popover.less"
 
 const App = () => {
 

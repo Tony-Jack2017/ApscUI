@@ -1,4 +1,4 @@
-import {forwardRef, useEffect, useRef, useState} from "react";
+import React, { CSSProperties, forwardRef, useEffect, useRef, useState} from "react";
 import WrapPortal, {Position} from "../../tools/Potarl";
 import classNames from "classnames";
 import {ComWithChild} from "../../types/common";
@@ -12,7 +12,6 @@ interface PopoverItf extends ComWithChild {
   arrowInAnchorPos?: "start" | "center" | "end"
   onClose?: () => void
 }
-
 
 const Popover = forwardRef<HTMLDivElement, PopoverItf>((props, ref) => {
 
@@ -35,8 +34,8 @@ const Popover = forwardRef<HTMLDivElement, PopoverItf>((props, ref) => {
   useEffect(() => {
     if(anchorEl) {
       setPosition({
-        top: 0,
-        left: 0,
+        top: anchorEl.offsetTop,
+        left: anchorEl.offsetLeft,
         width: anchorEl.offsetWidth,
         height: anchorEl.offsetHeight
       })
@@ -48,6 +47,10 @@ const Popover = forwardRef<HTMLDivElement, PopoverItf>((props, ref) => {
     "apsc-popover"
   ])
 
+  const innerStyle = {
+
+  }
+
   return (
     <WrapPortal
       show={open}
@@ -56,7 +59,7 @@ const Popover = forwardRef<HTMLDivElement, PopoverItf>((props, ref) => {
       maskVisible={false}
       onClose={onClose}
     >
-      <div className={classes}>
+      <div className={classes} style={innerStyle}>
         <div></div>
         <div className="apsc-popover-content">
           { children }
