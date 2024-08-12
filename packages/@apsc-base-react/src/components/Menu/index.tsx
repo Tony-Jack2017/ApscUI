@@ -127,9 +127,6 @@ const SubMenu = forwardRef<HTMLDivElement, SubMenuItf>((props, ref) => {
   return (
     <div className={classes} onClick={handleClick}>
       <div ref={trigger} className="sub-trigger">
-        <p style={{backgroundColor: "red"}}>
-          This is Test
-        </p>
       </div>
       { inline && children }
     </div>
@@ -139,6 +136,7 @@ const SubMenu = forwardRef<HTMLDivElement, SubMenuItf>((props, ref) => {
 
 const Menu = forwardRef<HTMLUListElement, MenuItf>((props, ref) => {
   const {
+    list,
     direction = "vertical",
     children
   } = props
@@ -166,6 +164,19 @@ const Menu = forwardRef<HTMLUListElement, MenuItf>((props, ref) => {
     }}>
       <ul className={classes}>
         { children }
+        {
+          list?.map((item, index) => {
+            if(item.subList) {
+              return (
+                <SubMenu></SubMenu>
+              )
+            }else {
+              return (
+                <MenuItem itemType={item.itemType} />
+              )
+            }
+          })
+        }
       </ul>
       <Popover open={subState.showSub}
                anchorEl={subState.subTrigger}
