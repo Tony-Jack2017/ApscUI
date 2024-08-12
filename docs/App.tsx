@@ -1,27 +1,39 @@
 
 import {useRef, useState} from "react";
-import {Popover} from "@apsc/base-react";
+import {Popover, Menu, SubMenu} from "@apsc/base-react";
 import "@apsc/style/src/components/popover.less"
 
 const App = () => {
 
-  const [state, setState] = useState(false)
+  const [state, setState] = useState({
+    index: 0,
+    open: false
+  })
 
   const handleClose = () => {
-    setState(false)
+    setState(pre => (
+      {
+        ...pre,
+        open: false
+      }
+    ))
   }
 
-  const trigger = useRef<HTMLButtonElement | null>(null)
+  const trigger = useRef<(HTMLButtonElement| null)[]>([])
+
+
 
   return (
     <div id="app">
-      <button style={{margin: 200}} onClick={() => {setState(pre => !pre)}}>Click Me1</button>
-      <button ref={trigger} style={{margin: 300}} onClick={() => {setState(pre => !pre)}}>Click Me2</button>
-      <Popover open={state} anchorEl={trigger.current as HTMLElement} anchorPos="top" isArrow={true}>
-        <div style={{backgroundColor: "red"}}>
-          Hello World
-        </div>
-      </Popover>
+
+      <div style={{ margin:300, width: 200 }}>
+        <Menu direction="horizontal">
+          <SubMenu>
+          </SubMenu>
+          <SubMenu>
+          </SubMenu>
+        </Menu>
+      </div>
     </div>
   )
 }

@@ -2,16 +2,17 @@ import React, { CSSProperties, forwardRef, useEffect, useRef, useState} from "re
 import WrapPortal, {Position} from "../../tools/Potarl";
 import classNames from "classnames";
 import {ComWithChild} from "../../types/common";
+import Arrow from "../../tools/Potarl/arrow";
 
 
 interface PopoverItf extends ComWithChild {
   open: boolean
   isArrow?: boolean
-  anchorEl: HTMLElement
+  anchorEl: HTMLElement | null
   anchorPos?: "top" | "bottom" | "left" | "right"
   arrowPos?: "start" | "center" | "end"
   arrowInAnchorPos?: "start" | "center" | "end"
-  onClose?: () => void
+  onClose: () => void
 }
 
 const handlePos = (pos:string):number => {
@@ -31,11 +32,11 @@ const getInnerStyle = (anchorPos:string, arrowPos:string, arrowInAnchorPos:strin
   const offset = handlePos(arrowPos) - handlePos(arrowInAnchorPos)
   switch (anchorPos) {
     case "top":
-      return {top: `calc(-100% - ${isArrow ? 10 : 0}px)`, left: `${offset}%`}
+      return {bottom: `calc(100% + ${isArrow ? 10 : 0}px)`, left: `${offset}%`}
     case "left":
       return {right: `calc(100% + ${isArrow ? 10 : 0}px)`, top: `${offset}%`}
     case "bottom":
-      return {bottom: `calc(-100% - ${isArrow ? 10 : 0}px)`, left: `${offset}%`}
+      return {top: `calc(100% + ${isArrow ? 10 : 0}px)`, left: `${offset}%`}
     case "right":
       return {left: `calc(100% + ${isArrow ? 10 : 0}px)`, top: `${offset}%`}
     default:
@@ -74,12 +75,11 @@ const Popover = forwardRef<HTMLDivElement, PopoverItf>((props, ref) => {
 
 
   const classes = classNames([
-    "apsc-popover"
+    "apsc-popover",
+    `apsc-popover-pos-${anchorPos}`
   ])
 
   const posStyle = getInnerStyle(anchorPos, arrowPos, arrowInAnchorPos, isArrow)
-
-  console.log(posStyle)
 
   return (
     <WrapPortal
@@ -91,10 +91,10 @@ const Popover = forwardRef<HTMLDivElement, PopoverItf>((props, ref) => {
       onClose={onClose}
     >
       <div className={classes}>
-        <div></div>
         <div className="apsc-popover-content">
           { children }
         </div>
+        { isArrow && <Arrow position={anchorPos} className="apsc-popover-arrow" /> }
       </div>
     </WrapPortal>
   )
