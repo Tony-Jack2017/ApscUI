@@ -6,12 +6,71 @@ ul.apsc-menu {
 
 
 .apsc-menu {
-
   &-dir-vertical {
   }
   &-dir-horizontal {
     display: flex;
     align-items: center;
     gap: 32px;
+  }
+}
+.apsc-menu-item {
+  .apsc-menu-item-content {
+    display: flex;
+    align-items: center;
+    .menu-item-title {
+      flex: 1;
+    }
+  }
+}
+
+.apsc-sub-menu {
+  .sub-trigger {
+    display: flex;
+    align-items: center;
+    .sub-title {
+      flex: 1;
+    }
+    .sub-suffix {
+      margin-left: 12px;
+      width: 16px;
+      position: relative;
+      .sub-arrow {
+        position: absolute;
+        left: 0;
+        &::before, &::after {
+          content: " ";
+          border-radius: 25px;
+          width: 8px;
+          height: 1px;
+          background-color: black;
+          position: absolute;
+          transition: all .5s ease-in-out;
+        }
+        &::before {
+          left: -1.5px;
+          transform: rotate(-45deg);
+        }
+        &::after {
+          right: -1.5px;
+          transform: rotate(45deg);
+        }
+      }
+      .open {
+        &::before {
+          transform: rotate(45deg);
+        }
+        &::after {
+          transform: rotate(-45deg);
+        }
+      }
+    }
+  }
+}
+
+.sub-child {
+  background-color: red;
+  li {
+    list-style: none;
   }
 }

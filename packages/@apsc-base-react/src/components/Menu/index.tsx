@@ -5,32 +5,33 @@ import {Popover} from "../../../index";
 import {useImmerReducer} from "use-immer";
 
 import "@apsc/style/src/components/menu.less"
+import {ComWithChild} from "../../types/common";
 
-
-type ItemType = {
+type BaseItemType = {
   itemType: "link" | "normal"
+  level?: "main" | "normal"
+  prefix?: ReactNode
   path?: string
   icon?: string | ReactNode
   title?: string
-  subList?: ItemType[]
 }
 
-interface MenuItemItf extends ItemType {
+export interface ItemType extends BaseItemType {
+  type: "list" | "custom"
   children?: ReactNode
+  list?: ItemType[]
 }
 
-interface SubMenuItf {
-  item?: ItemType
-  list?: ItemType[]
+type MenuItemItf = ItemType
+
+export interface SubMenuItf extends ItemType {
   showArrow?: boolean
-  inline?: boolean
-  children?: ReactNode
 }
 
-interface MenuItf {
-  list?: ItemType[]
+export interface MenuItf extends ComWithChild {
   direction?: "vertical" | "horizontal"
-  children?: ReactNode
+  inline?: boolean
+  list?: ItemType[]
 }
 
 type MenuContextType = {
@@ -38,13 +39,15 @@ type MenuContextType = {
   subChild: ReactNode | null
   subTrigger: HTMLElement | null
   setSubPopEl: Function
+  inline: boolean
 }
 
 const MenuContext = createContext<MenuContextType>({
   showSub: false,
   subChild: null,
   subTrigger: null,
-  setSubPopEl: () => {}
+  setSubPopEl: () => {},
+  inline: false
 })
 
 const subReducer = (
@@ -67,22 +70,28 @@ const subReducer = (
 const MenuItem = forwardRef<HTMLLIElement, MenuItemItf>((props, ref) => {
   const {
     itemType,
+    title,
     path,
-    icon
+    prefix,
+    icon,
+    children
   } = props
   const classes = classNames([
     "asps-menu-item"
   ])
   return (
     <li className={classes}>
+
       {
-        itemType === "link" && path
-          ? <NavLink to={path}>
-
-            </NavLink>
-          : <div>
-
-            </div>
+        children
+          ? children
+          : (itemType === "link" && path)
+            ? <NavLink to={path}>
+              </NavLink>
+            : <div className="apsc-menu-content">
+                <div className="menu-item-prefix">{ prefix ? prefix : icon }</div>
+                <div className="menu-item-title">{ title }</div>
+              </div>
       }
     </li>
   )
@@ -91,34 +100,43 @@ const MenuItem = forwardRef<HTMLLIElement, MenuItemItf>((props, ref) => {
 const SubMenu = forwardRef<HTMLDivElement, SubMenuItf>((props, ref) => {
 
   const {
-    inline = false,
-    showArrow = true
+    showArrow = true,
+    prefix,
+    icon,
+    title,
+    list,
+    children
   } = props
 
   const classes = classNames([
-    "apsc-submenu"
+    "apsc-sub-menu"
   ])
 
   const popover = useContext(MenuContext)
 
   const trigger = useRef<HTMLDivElement| null>(null)
-  const child = useRef<HTMLDivElement| null>(null)
 
-  const children = (
-    <div ref={child} className="sub-child">
-      Hello This is me
+  const child = (
+    <div className="sub-child">
+      {
+        list?.map((item, index) => {
+          if(item.type === "list" ) {
+            return item.list ? <SubMenu key={index} type={item.type} itemType={item.itemType} title={item.title} list={item.list} /> : <MenuItem key={index} type={item.type} itemType={item.itemType} title={item.title} />
+          }else {
+            return item.list ? <SubMenu key={index} type={item.type} itemType={item.itemType} /> : <MenuItem key={index} type={item.type} itemType={item.itemType} >{ item.children }</MenuItem>
+          }
+        })
+      }
     </div>
   )
 
   const handleClick = () => {
-    if(inline) {
-
-    }else {
+    if(!popover.inline) {
       popover.setSubPopEl({
         type: "open_sub",
         payload: {
           trigger: trigger.current,
-          child: children
+          child: child
         }
       })
     }
@@ -127,8 +145,13 @@ const SubMenu = forwardRef<HTMLDivElement, SubMenuItf>((props, ref) => {
   return (
     <div className={classes} onClick={handleClick}>
       <div ref={trigger} className="sub-trigger">
+        <div className="sub-prefix">{ prefix ? prefix : icon }</div>
+        <div className="sub-title">{ title }</div>
+        <div className="sub-suffix">
+          <div className={`sub-arrow ${popover.showSub ? "open" : ""}`}></div>
+        </div>
       </div>
-      { inline && children }
+      { popover.inline && children }
     </div>
 
   )
@@ -137,6 +160,7 @@ const SubMenu = forwardRef<HTMLDivElement, SubMenuItf>((props, ref) => {
 const Menu = forwardRef<HTMLUListElement, MenuItf>((props, ref) => {
   const {
     list,
+    inline = false,
     direction = "vertical",
     children
   } = props
@@ -157,23 +181,20 @@ const Menu = forwardRef<HTMLUListElement, MenuItf>((props, ref) => {
 
   return (
     <MenuContext.Provider value={{
-      showSub: false,
-      subChild: null,
-      subTrigger: null,
-      setSubPopEl: dispatchSub
+      showSub: subState.showSub,
+      subChild: subState.subChild,
+      subTrigger: subState.subTrigger,
+      setSubPopEl: dispatchSub,
+      inline: inline
     }}>
       <ul className={classes}>
-        { children }
+        { children && <MenuItem type="custom" itemType="normal" >{ children }</MenuItem> }
         {
           list?.map((item, index) => {
-            if(item.subList) {
-              return (
-                <SubMenu></SubMenu>
-              )
+            if(item.type === "list" ) {
+              return item.list ? <SubMenu key={index} type={item.type} itemType={item.itemType} title={item.title} list={item.list} /> : <MenuItem key={index} type={item.type} itemType={item.itemType} title={item.title} />
             }else {
-              return (
-                <MenuItem itemType={item.itemType} />
-              )
+              return item.list ? <SubMenu key={index} type={item.type} itemType={item.itemType} /> : <MenuItem key={index} type={item.type} itemType={item.itemType} >{ item.children }</MenuItem>
             }
           })
         }
