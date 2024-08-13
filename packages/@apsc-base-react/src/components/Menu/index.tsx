@@ -4,7 +4,7 @@ import {useImmerReducer} from "use-immer";
 
 import { Popover } from "../../../index";
 import MenuItem from "./item";
-import SubMenu from "./subMenu";
+import SubMenu from "./sub-menu";
 
 import "@apsc/style/src/components/menu.less"
 import {ComWithChild} from "../../types/common";
@@ -98,11 +98,7 @@ const Menu = forwardRef<HTMLUListElement, MenuItf>((props, ref) => {
         { children && <MenuItem type="custom" itemType="normal" >{ children }</MenuItem> }
         {
           list?.map((item, index) => {
-            if(item.type === "list" ) {
-              return item.list ? <SubMenu key={index} type={item.type} itemType={item.itemType} title={item.title} list={item.list} /> : <MenuItem key={index} type={item.type} itemType={item.itemType} title={item.title} />
-            }else {
-              return item.list ? <SubMenu key={index} type={item.type} itemType={item.itemType} /> : <MenuItem key={index} type={item.type} itemType={item.itemType} >{ item.children }</MenuItem>
-            }
+            return item.list ? <SubMenu key={index} {...item} /> : <MenuItem key={index} {...item} >{ item.children }</MenuItem>
           })
         }
       </ul>

@@ -4,13 +4,15 @@
   "main": "index.tsx",
   "license": "MIT",
   "peerDependencies": {
-    "react": "^18.2.0",
+    "@apsc/resource": "1.0.0",
     "@apsc/style": "1.0.0",
+    "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.15.0"
   },
   "devDependencies": {},
   "dependencies": {
+    "@apsc/resource": "1.0.0",
     "classnames": "^2.3.2",
     "immer": "^10.1.1",
     "use-immer": "^0.10.0"

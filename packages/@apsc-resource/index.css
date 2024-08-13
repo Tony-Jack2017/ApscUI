@@ -1,3 +1,5 @@
+@import "icon/icon_one/css/boxicons.min.css";
+
 @font-face {
     font-family: "jetbrain-mono";
     src: url("./fonts/webfonts/JetBrainsMono-Bold.woff2") format("woff2");
@@ -17,4 +19,3 @@
     src: url("./fonts/webfonts/JetBrainsMono-Thin.woff2") format("woff2");
     src: url("./fonts/webfonts/JetBrainsMono-ThinItalic.woff2") format("woff2");
 }
-
