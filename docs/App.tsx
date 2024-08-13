@@ -22,8 +22,8 @@ const App = () => {
 
   return (
     <div id="app">
-      <div style={{ margin:300, width: 200 }}>
-        <Menu direction="horizontal" list={list}>
+      <div style={{ margin:100, width: 200 }}>
+        <Menu direction="vertical" list={list} inline={true}>
         </Menu>
       </div>
     </div>

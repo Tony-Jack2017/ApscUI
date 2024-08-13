@@ -56,21 +56,34 @@ ul.apsc-menu {
           transform: rotate(45deg);
         }
       }
-      .open {
-        &::before {
-          transform: rotate(45deg);
-        }
-        &::after {
-          transform: rotate(-45deg);
-        }
-      }
+      //.open {
+      //  &::before {
+      //    transform: rotate(45deg);
+      //  }
+      //  &::after {
+      //    transform: rotate(-45deg);
+      //  }
+      //}
+    }
+  }
+  .sub-child {
+    &, sub-child-inline {
+      animation: openChild .5s ease-in-out forwards;
     }
   }
 }
 
 .sub-child {
-  background-color: red;
   li {
     list-style: none;
+  }
+}
+
+@keyframes openChild {
+  from {
+    height: 0;
+  }
+  to {
+    height: auto;
   }
 }
