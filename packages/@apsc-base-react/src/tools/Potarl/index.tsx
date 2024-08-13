@@ -90,18 +90,19 @@ const WrapPortal= forwardRef<HTMLDivElement, WrapPortalItf>((props, ref) => {
       <div className="apsc-wrap-portal" tabIndex={-1} onClick={!maskVisible ? handleClick : () => {}}>
         {maskVisible && <Mask onClick={handleClick} />}
         <div ref={ref} className={wrapContentClasses} style={innerStyle}>
-          <Animation
-            fromAnchor={true}
-            offset={[300, 300]}
-            animationRound={animation.round}
-            animationName={animation.name}
-            animationType={animation.type}
-            onAnimationEnd={handleAnimationEnd}
-          >
+
             <div className="apsc-wrap-content" style={posStyle}>
-              {children}
+              <Animation
+                fromAnchor={true}
+                offset={[300, 300]}
+                animationRound={animation.round}
+                animationName={animation.name}
+                animationType={animation.type}
+                onAnimationEnd={handleAnimationEnd}
+              >
+                {children}
+              </Animation>
             </div>
-          </Animation>
         </div>
       </div>
     ), document.body)

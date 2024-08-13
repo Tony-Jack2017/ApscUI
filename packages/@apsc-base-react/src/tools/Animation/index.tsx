@@ -63,10 +63,12 @@ const Animation = forwardRef<HTMLDivElement, AnimationItf>((props, ref) => {
   }
 
   return (
-    <div ref={ref} onAnimationEnd={handleAnimationEnd} className={classNames([
-      ...classes,
-      { [`animation-${animationName}`]: animationType == "once" },
-    ])} style={innerStyle}>
+    <div ref={ref} onAnimationEnd={handleAnimationEnd}
+         className={classNames([
+           ...classes,
+           { [`animation-${animationName}`]: animationType == "once" },
+         ])}
+         style={innerStyle}>
       { children }
     </div>
   )
