@@ -81,24 +81,24 @@ ul.apsc-menu {
       padding-left: 32px;
     }
     &, .sub-child-inline {
-      animation: openChild 1.5s;
+      //animation: expand 1s;
     }
+  }
+}
+
+@keyframes expand {
+  from {
+    height: 0;
+    overflow: hidden;
+  }
+  to {
+    height: var(--real-height);
+    overflow: hidden;
   }
 }
 
 .sub-child {
   li {
     list-style: none;
-  }
-}
-
-@keyframes openChild {
-  from {
-    height: 0;
-    overflow: hidden;
-  }
-  to {
-    height: var(--height);
-    overflow: hidden;
   }
 }

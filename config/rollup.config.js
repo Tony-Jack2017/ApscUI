@@ -1,20 +1,29 @@
+import { rollup } from 'rollup';
 import resolve from '@rollup/plugin-node-resolve'
+import babel from "@rollup/plugin-babel";
 
-function genRollupConf(frame) {
+export  function genRollupConf(frame) {
     let input, output, plugins;
-    input = `./packages/@apsc-base-${frame}/src/index.tsx`
+    if(frame) {
+        input = `./packages/@apsc-base-${frame}/src/index.tsx`
+    }else {
+        input = `./packages`
+    }
     output = {
-        dir: "./dist",
+        dir: "./lib",
         file: ""
     },
     plugins = [
-        resolve()
+        babel({
+            runtimeHelpers: true,
+            exclude: "node_modules/**",
+            externalHelpers: true,
+            babelHelpers: "bundled"
+        }),
+        resolve(),
     ]
 }
 
-const rollupConfig = {
-    input: "",
-    output: ""
-}
+export async function build(buildOption) {
 
-export default rollupConfig
+}

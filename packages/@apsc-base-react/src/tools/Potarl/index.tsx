@@ -74,7 +74,6 @@ const WrapPortal= forwardRef<HTMLDivElement, WrapPortalItf>((props, ref) => {
   }, [show])
 
   const handleClick = () => {
-    console.log(1111)
     if (onClose) onClose()
     setAnimation(pre => ({...pre, round: "disappear"}))
   }

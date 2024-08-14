@@ -2,6 +2,7 @@ import React, {CSSProperties, forwardRef, useContext, useRef, useState} from "re
 import classNames from "classnames";
 import {ItemType, MenuContext} from "./index";
 import MenuItem from "./item";
+import {Animation} from "../../tools/Animation";
 
 export interface SubMenuItf extends ItemType {
   showArrow?: boolean
@@ -22,6 +23,15 @@ const SubMenu = forwardRef<HTMLDivElement, SubMenuItf>((props, ref) => {
   const trigger = useRef<HTMLLIElement | null>(null)
   const c = useRef<HTMLDivElement | null>(null)
   const [childState, setChildState] = useState(false)
+  const [animation, setAnimation] = useState<{
+    name: string
+    type: "once" | "round",
+    round: undefined | "appear" | "disappear"
+  }>({
+    name: "expand",
+    type: "round",
+    round: "appear"
+  })
 
   const classes = classNames([
     "apsc-sub-menu"
@@ -41,13 +51,24 @@ const SubMenu = forwardRef<HTMLDivElement, SubMenuItf>((props, ref) => {
         }
       })
     } else {
-      setChildState(pre => !pre)
+      if(!childState) {
+        setAnimation(pre => ({...pre, round: "appear"}))
+        setChildState(true)
+      }else {
+        setAnimation(pre => ({...pre, round: "disappear"}))
+      }
     }
   }
 
+  const handleAnimateEnd = () => {
+    if(animation.round === "disappear") {
+      setChildState(pre => !pre)
+      setAnimation(pre => ({...pre, round: "appear"}))
+    }
+  }
 
   const child = (
-    <ul className={childClasses} style={{"--height": `${list ? (list.length * 40 + (list.length + 1) * 4 + 8) : 0}px`} as CSSProperties}>
+    <ul className={childClasses} style={{"--real-height": `${list ? (list.length * 40 + (list.length + 1) * 4 + 8) : 0}px`} as CSSProperties}>
       {
         list?.map((item, index) => {
           if (item.type === "list") {
@@ -76,7 +97,19 @@ const SubMenu = forwardRef<HTMLDivElement, SubMenuItf>((props, ref) => {
             <div className={`sub-arrow ${popover.showSub ? "open" : ""}`}></div>
           </div>
         }/>
-      {childState && child}
+      {
+        childState &&
+          <Animation
+              key={list?.length}
+              animationName={animation.name}
+              animationType={animation.type}
+              animationRound={animation.round}
+              onAnimationEnd={handleAnimateEnd}
+              style={{"--real-height": `${list ? (list.length * 40 + (list.length + 1) * 4 + 8) : 0}px`, height: 0, overflow: "hidden"} as CSSProperties}
+          >
+            {child}
+          </Animation>
+      }
     </div>
 
   )

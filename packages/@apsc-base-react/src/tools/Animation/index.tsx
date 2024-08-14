@@ -12,6 +12,7 @@ export interface AnimationItf extends ComWithChild {
   animationType: "once" | "round"
   animationRound?: "appear" | "disappear"
   onAnimationEnd?: () => void
+  style?: CSSProperties
   target?: null
 }
 
@@ -34,6 +35,7 @@ const Animation = forwardRef<HTMLDivElement, AnimationItf>((props, ref) => {
     animationType,
     animationRound,
     onAnimationEnd,
+    style,
     children
   } = props
 
@@ -68,7 +70,7 @@ const Animation = forwardRef<HTMLDivElement, AnimationItf>((props, ref) => {
            ...classes,
            { [`animation-${animationName}`]: animationType == "once" },
          ])}
-         style={innerStyle}>
+         style={{...innerStyle, ...style}}>
       { children }
     </div>
   )

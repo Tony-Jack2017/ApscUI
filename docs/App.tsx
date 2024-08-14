@@ -8,7 +8,7 @@ const list:ItemType[] = [
   { type: "list", itemType: "normal", title: "menu2", icon: "dashboard"  },
   { type: "list", itemType: "normal", title: "menu3", icon: "dashboard"  },
   {
-    type: "list", itemType: "normal", title: "menu1", icon: "dashboard",
+    type: "list", itemType: "normal", title: "menu4", icon: "dashboard",
     list: [
       { type: "list", itemType: "normal", title: "sub1" },
       { type: "list", itemType: "normal", title: "sub2" },
@@ -16,6 +16,7 @@ const list:ItemType[] = [
       { type: "list", itemType: "normal", title: "sub4" },
     ]
   },
+  // { type: "list", itemType: "normal", title: "menu5", icon: "dashboard"  },
 ]
 
 const App = () => {

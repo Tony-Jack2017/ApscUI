@@ -1,0 +1,30 @@
+.animation-expand-round-appear {
+  animation-name: expandIn;
+  animation-fill-mode: forwards;
+}
+.animation-expand-round-disappear {
+  animation-name: expandOut;
+  animation-fill-mode: forwards;
+}
+
+@keyframes expandIn {
+  from {
+    height: 0;
+    overflow: hidden;
+  }
+  to {
+    height: var(--real-height);
+    overflow: hidden;
+  }
+}
+
+@keyframes expandOut {
+  from {
+    height: var(--real-height);
+    overflow: hidden;
+  }
+  to {
+    height: 0;
+    overflow: hidden;
+  }
+}
