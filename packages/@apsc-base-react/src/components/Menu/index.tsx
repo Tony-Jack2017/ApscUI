@@ -6,7 +6,6 @@ import { Popover } from "../../../index";
 import MenuItem from "./item";
 import SubMenu from "./sub-menu";
 
-import "@apsc/style/src/components/menu.less"
 import {ComWithChild} from "../../types/common";
 
 type BaseItemType = {

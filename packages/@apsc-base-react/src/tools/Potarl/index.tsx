@@ -6,9 +6,6 @@ import {ComWithChild} from "../../types/common";
 import Mask from "./mask";
 import {Animation} from "../Animation";
 
-import "@apsc/style/src/components/common/portal.less"
-
-
 
 export type Position = {
   top: string | number

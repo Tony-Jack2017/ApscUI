@@ -3,7 +3,6 @@ import classNames from "classnames";
 import {useImmerReducer} from "use-immer";
 
 import {ComWithChild} from "../../types/common";
-import "@apsc/style/src/animation/motion/index.less"
 
 export interface AnimationItf extends ComWithChild {
   fromAnchor?: boolean

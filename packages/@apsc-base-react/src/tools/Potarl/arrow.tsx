@@ -1,6 +1,5 @@
 import React, {CSSProperties, FC} from "react";
 import classNames from "classnames";
-import "@apsc/style/src/components/common/arrow.less"
 
 interface ArrowItf {
   position: "top" | "bottom" | "right" | "left"

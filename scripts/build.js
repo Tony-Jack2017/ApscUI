@@ -1,5 +1,9 @@
-import {build, genRollupConf} from "../config/rollup.config";
+import {build, genRollupConf} from "../config/rollup.config.js";
 
-genRollupConf("react")
+const { inputOption, outputOption } = genRollupConf("react")
 
-build()
+build(inputOption, outputOption).then(res => {
+  console.log("build success !!!!")
+}).catch(err => {
+  console.log(err)
+})

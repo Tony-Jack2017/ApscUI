@@ -1,4 +1,3 @@
-import "@apsc/style/src/components/common/mask.less"
 import {forwardRef} from "react";
 
 interface WrapMaskItf {

@@ -5,6 +5,7 @@
   "author": "LTX",
   "license": "MIT",
   "private": "true",
+  "type": "module",
   "scripts": {
     "docs": "node ./scripts/docs.js",
     "build": "node ./scripts/build.js"
@@ -17,6 +18,8 @@
     "@babel/preset-typescript": "^7.21.0",
     "@rollup/plugin-babel": "^6.0.3",
     "@rollup/plugin-node-resolve": "^15.0.1",
+    "@rollup/plugin-terser": "^0.4.4",
+    "@rollup/plugin-typescript": "^11.1.6",
     "babel-loader": "^9.1.2",
     "html-webpack-plugin": "^5.5.1",
     "lerna": "^6.5.1",

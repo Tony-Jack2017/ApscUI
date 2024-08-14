@@ -1,5 +1,4 @@
 import {forwardRef} from "react";
-import "@apsc/style/src/components/common/icon.less"
 import classNames from "classnames";
 
 interface IconItf {
