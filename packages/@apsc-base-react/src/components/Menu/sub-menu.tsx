@@ -1,8 +1,9 @@
 import React, {CSSProperties, forwardRef, useContext, useRef, useState} from "react";
 import classNames from "classnames";
-import {ItemType, MenuContext} from "./index";
+import {ItemType} from "./types";
 import MenuItem from "./item";
 import {Animation} from "../../tools/Animation";
+import {MenuContext} from "./context";
 
 export interface SubMenuItf extends ItemType {
   showArrow?: boolean

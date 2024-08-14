@@ -1,10 +1,10 @@
-import {FC, forwardRef} from "react";
-import {ComWithChild} from "../../../types/common";
+import {forwardRef, ReactNode} from "react";
 
-interface ItemItf extends ComWithChild {
+export interface ItemItf {
   span?: number
   offset?: number
   limit?: [string| number, string | number]
+  children?: ReactNode
 }
 
 const Item = forwardRef<HTMLDivElement, ItemItf>((props, ref) => {

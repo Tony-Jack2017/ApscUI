@@ -7,5 +7,6 @@
     ".",
     "packages/*",
     "docs"
-  ]
+  ],
+  "sourceMaps": true
 }

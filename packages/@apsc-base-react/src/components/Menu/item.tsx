@@ -1,16 +1,11 @@
 import React, {forwardRef, ReactNode} from "react";
 import classNames from "classnames";
 import {NavLink} from "react-router-dom";
-import {ItemType} from "./index";
+import {ItemType} from "./types";
 import {isElement} from "react-dom/test-utils";
 import Icon from "../../tools/Icon";
 
-export interface MenuItemItf extends ItemType {
-  className?: string
-  suffix?: ReactNode
-  iconSuf?: string | ReactNode
-  onClick?: () => void
-}
+
 
 const MenuItem = forwardRef<HTMLLIElement, MenuItemItf>((props, ref) => {
   const {
@@ -51,5 +46,12 @@ const MenuItem = forwardRef<HTMLLIElement, MenuItemItf>((props, ref) => {
     </li>
   )
 })
+
+export interface MenuItemItf extends ItemType {
+  className?: string
+  suffix?: ReactNode
+  iconSuf?: string | ReactNode
+  onClick?: () => void
+}
 
 export default MenuItem

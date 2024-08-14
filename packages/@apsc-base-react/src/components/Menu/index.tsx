@@ -1,48 +1,13 @@
-import React, {createContext, forwardRef, Fragment, ReactNode, useContext, useRef, useState} from "react";
+import React, {forwardRef} from "react";
 import classNames from "classnames";
 import {useImmerReducer} from "use-immer";
-
-import { Popover } from "../../../index";
+import Popover from "../Popover/index";
 import MenuItem from "./item";
 import SubMenu from "./sub-menu";
 
-import {ComWithChild} from "../../types/common";
+import { MenuItf } from "./types";
+import { MenuContext } from "./context";
 
-type BaseItemType = {
-  itemType: "link" | "normal"
-  prefix?: ReactNode
-  path?: string
-  icon?: string | ReactNode
-  title?: string
-}
-
-export interface ItemType extends BaseItemType {
-  type: "list" | "custom" | "normal"
-  children?: ReactNode
-  list?: ItemType[]
-}
-
-export interface MenuItf extends ComWithChild {
-  direction?: "vertical" | "horizontal"
-  inline?: boolean
-  list?: ItemType[]
-}
-
-type MenuContextType = {
-  showSub: boolean
-  subChild: ReactNode | null
-  subTrigger: HTMLElement | null
-  setSubPopEl: Function
-  inline: boolean
-}
-
-export const MenuContext = createContext<MenuContextType>({
-  showSub: false,
-  subChild: null,
-  subTrigger: null,
-  setSubPopEl: () => {},
-  inline: false
-})
 
 const popReducer = (
   draft: { showSub: boolean; subTrigger: any; subChild: any; },
@@ -65,7 +30,7 @@ const popReducer = (
 
 const Menu = forwardRef<HTMLUListElement, MenuItf>((props, ref) => {
   const {
-    list,
+    menList,
     inline = false,
     direction = "vertical",
     children
@@ -96,7 +61,7 @@ const Menu = forwardRef<HTMLUListElement, MenuItf>((props, ref) => {
       <ul className={classes}>
         { children && <MenuItem type="custom" itemType="normal" >{ children }</MenuItem> }
         {
-          list?.map((item, index) => {
+          menList?.map((item, index) => {
             return item.list ? <SubMenu key={index} {...item} /> : <MenuItem key={index} {...item} >{ item.children }</MenuItem>
           })
         }
@@ -112,8 +77,7 @@ const Menu = forwardRef<HTMLUListElement, MenuItf>((props, ref) => {
   )
 })
 
-export {
-  Menu,
-  SubMenu,
-  MenuItem
+export default Menu
+
+export class ItemType {
 }

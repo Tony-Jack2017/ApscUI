@@ -1,13 +1,18 @@
 import {rollup} from 'rollup';
 import resolve from '@rollup/plugin-node-resolve'
+import commonjs from '@rollup/plugin-commonjs';
 import babel from "@rollup/plugin-babel";
 import typescript from '@rollup/plugin-typescript';
+import terser from "@rollup/plugin-terser";
+
+import "@babel/preset-env"
+import "@babel/preset-react"
+import "@babel/preset-typescript"
 
 const genRollupConf = (frame) => {
   let inputOption, outputOption
   let inputPath, fileName, input
   if (frame) {
-    input = `packages/@apsc-base-${frame}`
     inputPath = `packages/@apsc-base-${frame}/index.tsx`
     fileName = `apsc-${frame}.js`
   } else {
@@ -16,29 +21,35 @@ const genRollupConf = (frame) => {
 
   inputOption = {
     input: inputPath,
+    context: "auto",
     external: ["react", "react-dom"],
     plugins: [
-      typescript({
-        module: "ESNext",
-        exclude: 'node_modules/**',
-        include: `${input}/**`,
-      }),
-      babel({
-        exclude: "node_modules/**",
-        babelHelpers: "bundled",
-        extensions: ['.js', '.jsx'],
-        presets: ['@babel/preset-env', '@babel/preset-react', '@babel/preset-typescript'],
-      }),
       resolve({
-        extensions: [".js", ".jsx", ".ts", ".tsx", ".less"], //允许我们加载第三方模块
+        extensions: ['.js', '.jsx', '.ts', '.tsx'],
       }),
-    ]
+      commonjs(),
+      typescript(),
+      babel({
+        extensions: ['.js', '.jsx', '.ts', '.tsx'],
+        babelHelpers: 'bundled',
+        presets: [
+          '@babel/preset-env',
+          '@babel/preset-react',
+          '@babel/preset-typescript',
+        ],
+        exclude: 'node_modules/**',
+        sourceMaps: false
+      }),
+      terser(),
+    ],
+    treeshake: true
   }
 
   outputOption = {
-    dir: "./lib",
-    name: fileName,
-    format: "es"
+    file: './lib/@apsc-base-rect.js',
+    name: "Hello",
+    format: "esm",
+    sourcemap: true
   }
 
   return {inputOption, outputOption}
@@ -46,33 +57,21 @@ const genRollupConf = (frame) => {
 
 async function generateOutputs(bundle, outputOption) {
   const {output} = await bundle.generate(outputOption);
-  for (const chunkOrAsset of output) {
-    if (chunkOrAsset.type === 'asset') {
-      console.log('Asset', chunkOrAsset);
-    } else {
-      console.log('Chunk', chunkOrAsset.modules);
-    }
-  }
+  return output
 }
 
 const build = async (inputOption, outputOption) => {
   let bundle;
   let buildFailed = false;
   try {
-    // create a bundle
     bundle = await rollup(inputOption);
-
-    // an array of file names this bundle depends on
-    console.log(bundle.watchFiles);
-
     await generateOutputs(bundle, outputOption);
+    await bundle.write(outputOption)
   } catch (error) {
     buildFailed = true;
-    // do some error reporting
-    console.error(error);
+    console.error("ERRRO _>", error);
   }
   if (bundle) {
-    // closes the bundle
     await bundle.close();
   }
   process.exit(buildFailed ? 1 : 0);

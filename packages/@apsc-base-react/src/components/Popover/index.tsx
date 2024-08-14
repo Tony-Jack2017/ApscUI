@@ -4,8 +4,7 @@ import classNames from "classnames";
 import {ComWithChild} from "../../types/common";
 import Arrow from "../../tools/Potarl/arrow";
 
-
-interface PopoverItf extends ComWithChild {
+export interface PopoverItf extends ComWithChild {
   open: boolean
   isArrow?: boolean
   anchorEl: HTMLElement | null
@@ -14,6 +13,7 @@ interface PopoverItf extends ComWithChild {
   arrowInAnchorPos?: "start" | "center" | "end"
   onClose: () => void
 }
+
 
 const handlePos = (pos:string):number => {
   switch (pos) {
@@ -62,6 +62,7 @@ const Popover = forwardRef<HTMLDivElement, PopoverItf>((props, ref) => {
     top: 0, left: 0, width: 0, height: 0
   })
 
+
   useEffect(() => {
     if(anchorEl) {
       setPosition({
@@ -99,6 +100,5 @@ const Popover = forwardRef<HTMLDivElement, PopoverItf>((props, ref) => {
     </WrapPortal>
   )
 })
-
 
 export default Popover

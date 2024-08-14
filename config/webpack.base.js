@@ -1,6 +1,5 @@
 const path = require('path')
 const HtmlWebpackPlugin = require("html-webpack-plugin")
-const ApisWebpackPlugin = require("./plugins/apsc-webpack-plugin")
 const {ProgressPlugin} = require("webpack")
 let progressPlugin = new ProgressPlugin({
   activeModules: true,         // 默认false，显示活动模块计数和一个活动模块正在进行消息。
