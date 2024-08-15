@@ -6,12 +6,15 @@ import {Animation} from "../../tools/Animation";
 import {MenuContext} from "./context";
 
 export interface SubMenuItf extends ItemType {
+  fixedArrow?: boolean
   showArrow?: boolean
 }
 
 const SubMenu = forwardRef<HTMLDivElement, SubMenuItf>((props, ref) => {
 
   const {
+    itemKey,
+    fixedArrow = false,
     showArrow = true,
     prefix,
     icon,
@@ -44,7 +47,7 @@ const SubMenu = forwardRef<HTMLDivElement, SubMenuItf>((props, ref) => {
 
   const handleClick = () => {
     if (!popover.inline) {
-      popover.setSubPopEl({
+      popover.setContext({
         type: "open_sub",
         payload: {
           trigger: trigger.current,
@@ -73,10 +76,10 @@ const SubMenu = forwardRef<HTMLDivElement, SubMenuItf>((props, ref) => {
       {
         list?.map((item, index) => {
           if (item.type === "list") {
-            return item.list ? <SubMenu key={index} {...item} /> : <MenuItem key={index} {...item} />
+            return item.list ? <SubMenu itemKey={item.itemKey} key={item.itemKey ? item.itemKey : index} {...item} /> : <MenuItem itemKey={item.itemKey} key={item.itemKey ? item.itemKey : index} {...item} />
           } else {
-            return item.list ? <SubMenu key={index} {...item} /> :
-              <MenuItem key={index} {...item} >{item.children}</MenuItem>
+            return item.list ? <SubMenu itemKey={item.itemKey} key={item.itemKey ? item.itemKey : index} {...item} /> :
+              <MenuItem itemKey={item.itemKey} key={item.itemKey ? item.itemKey : index} {...item} >{item.children}</MenuItem>
           }
         })
       }
@@ -86,6 +89,7 @@ const SubMenu = forwardRef<HTMLDivElement, SubMenuItf>((props, ref) => {
   return (
     <div className={classes}>
       <MenuItem
+        itemKey={itemKey}
         ref={trigger}
         className="sub-trigger"
         type="normal"
@@ -94,8 +98,9 @@ const SubMenu = forwardRef<HTMLDivElement, SubMenuItf>((props, ref) => {
         icon={icon}
         title={title}
         suffix={
+          showArrow &&
           <div className="sub-suffix">
-            <div className={`sub-arrow ${popover.showSub ? "open" : ""}`}></div>
+            <div className={`sub-arrow ${fixedArrow ? "arrow-fixed" : "arrow-normal"} ${childState ? "open" : ""}`}></div>
           </div>
         }/>
       {

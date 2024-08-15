@@ -1,14 +1,21 @@
-import React, {forwardRef, ReactNode} from "react";
+import React, {forwardRef, ReactNode, useContext} from "react";
 import classNames from "classnames";
 import {NavLink} from "react-router-dom";
 import {ItemType} from "./types";
 import {isElement} from "react-dom/test-utils";
 import Icon from "../../tools/Icon";
+import {MenuContext} from "./context";
 
-
+export interface MenuItemItf extends ItemType {
+  className?: string
+  suffix?: ReactNode
+  iconSuf?: string | ReactNode
+  onClick?: () => void
+}
 
 const MenuItem = forwardRef<HTMLLIElement, MenuItemItf>((props, ref) => {
   const {
+    itemKey,
     itemType,
     title,
     path,
@@ -25,19 +32,31 @@ const MenuItem = forwardRef<HTMLLIElement, MenuItemItf>((props, ref) => {
     className
   ])
 
-  const handleClick = () => {
+  const ctx = useContext(MenuContext)
+
+  const handleClick = (itemType: MenuItemItf["itemType"], key?: string | number) => {
+    if(itemType !== "link" && key) {
+      ctx.setContext({ type: "select_item", payload:{ activeItem: key } })
+    }
     if (onClick) { onClick() }
   }
 
   return (
-    <li ref={ref} className={classes} onClick={() => { handleClick() }}>
+    <li ref={ref} className={classes} onClick={() => { handleClick(itemType, itemKey) }}>
       {
         children
           ? children
           : (itemType === "link" && path)
-            ? <NavLink to={path}>
-            </NavLink>
-            : <div className="apsc-menu-item-content">
+            ? <NavLink to={path} className={({ isActive}) =>
+                [
+                  isActive ? "item-active" : "",
+                ].join(" ")
+              }>
+                <div className="menu-item-prefix">{ prefix ? prefix : isElement(icon) ? icon : <Icon icon={icon as string} /> }</div>
+                <div className="menu-item-title">{ title }</div>
+                <div className="menu-item-suffix">{ suffix ? suffix : isElement(iconSuf) ? iconSuf : <Icon icon={iconSuf as string} /> }</div>
+              </NavLink>
+            : <div className={classNames(["apsc-menu-item-content", { "item-active": ctx.activeItem === itemKey }])} >
                 <div className="menu-item-prefix">{ prefix ? prefix : isElement(icon) ? icon : <Icon icon={icon as string} /> }</div>
                 <div className="menu-item-title">{ title }</div>
                 <div className="menu-item-suffix">{ suffix ? suffix : isElement(iconSuf) ? iconSuf : <Icon icon={iconSuf as string} /> }</div>
@@ -46,12 +65,5 @@ const MenuItem = forwardRef<HTMLLIElement, MenuItemItf>((props, ref) => {
     </li>
   )
 })
-
-export interface MenuItemItf extends ItemType {
-  className?: string
-  suffix?: ReactNode
-  iconSuf?: string | ReactNode
-  onClick?: () => void
-}
 
 export default MenuItem

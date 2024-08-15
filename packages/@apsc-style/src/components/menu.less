@@ -1,9 +1,10 @@
+@import "../common/var/base";
+
 ul.apsc-menu {
   margin: 0;
   padding: 0;
   list-style: none;
 }
-
 
 .apsc-menu {
   &-dir-vertical {
@@ -34,46 +35,75 @@ ul.apsc-menu {
     }
     .menu-item-suffix {
     }
-  }
-}
 
-.apsc-sub-menu {
-  .sub-trigger {
-    .sub-suffix {
-      margin-left: 12px;
-      width: 16px;
-      position: relative;
+    &.item-active {
+      background-color: rgba(@apsc-primary-color, .2);
+      color: rgba(@apsc-primary-color, 1);
       .sub-arrow {
-        position: absolute;
-        left: 0;
+        background-color: rgba(@apsc-primary-color, 1);
+      }
+    }
+  }
+  &.sub-trigger {
+    .sub-suffix {
+      position: relative;
+      width: 8px;
+      height: 1px;
+      .sub-arrow {
         &::before, &::after {
-          content: " ";
-          border-radius: 25px;
-          width: 8px;
+          content: "";
+          border-radius: 2px;
+          width: 5px;
           height: 1px;
           background-color: black;
           position: absolute;
           transition: all .5s ease-in-out;
         }
-        &::before {
-          left: -1.5px;
-          transform: rotate(-45deg);
+        &.arrow-fixed {
+          &::before {
+            left: -1.5px;
+            transform: rotate(-45deg);
+          }
+          &::after {
+            right: -1.5px;
+            transform: rotate(45deg);
+          }
+          &.open {
+            &::before {
+              transform: rotate(45deg);
+            }
+            &::after {
+              transform: rotate(-45deg);
+            }
+          }
         }
-        &::after {
-          right: -1.5px;
-          transform: rotate(45deg);
+        &.arrow-normal {
+          &::before {
+            right: 50%;
+            transform-origin: 100%;
+            transform: rotate(45deg);
+          }
+          &::after {
+            right: 50%;
+            transform-origin: 100%;
+            transform: rotate(-45deg);
+          }
+          &.open {
+            &::before {
+              transform: rotate(135deg);
+            }
+            &::after {
+              transform: rotate(45deg);
+            }
+          }
         }
       }
-      //.open {
-      //  &::before {
-      //    transform: rotate(45deg);
-      //  }
-      //  &::after {
-      //    transform: rotate(-45deg);
-      //  }
-      //}
     }
   }
+}
+
+.apsc-sub-menu {
+
   .sub-child {
     padding: 4px;
     background-color: rgba(0, 0, 0, .04);

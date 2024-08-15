@@ -5,13 +5,13 @@ import Popover from "../Popover/index";
 import MenuItem from "./item";
 import SubMenu from "./sub-menu";
 
-import { MenuItf } from "./types";
+import {MenuContextType, MenuItf} from "./types";
 import { MenuContext } from "./context";
 
 
-const popReducer = (
-  draft: { showSub: boolean; subTrigger: any; subChild: any; },
-  action: { type: any; payload?: { trigger: any; child: any; }; }
+const ctxReducer = (
+  draft: MenuContextType,
+  action: { type: any; payload?: { trigger: any; child: any; activeItem: string }; }
 ) => {
   switch (action.type) {
     case "open_sub":
@@ -23,13 +23,17 @@ const popReducer = (
       break;
     case "close_sub":
       draft.showSub = false; break;
+    case "select_item":
+      if(action.payload) {
+        draft.activeItem = action.payload.activeItem
+      }
   }
 }
 
 
-
 const Menu = forwardRef<HTMLUListElement, MenuItf>((props, ref) => {
   const {
+    manySub = true,
     menList,
     inline = false,
     direction = "vertical",
@@ -39,39 +43,42 @@ const Menu = forwardRef<HTMLUListElement, MenuItf>((props, ref) => {
     "apsc-menu",
     `apsc-menu-dir-${direction}`
   ])
-  const [popState, dispatchSub] = useImmerReducer(popReducer,{
+  const [ctxState, dispatchCtx] = useImmerReducer(ctxReducer,{
+    activeItem: "",
     showSub: false,
     subChild: null,
     subTrigger: null,
-    setSubPopEl: () => {}
+    inline: inline,
+    setContext: () => {}
   })
 
   const handleClose = () => {
-    dispatchSub({ type: "close_sub" })
+    dispatchCtx({ type: "close_sub" })
   }
 
   return (
     <MenuContext.Provider value={{
-      showSub: popState.showSub,
-      subChild: popState.subChild,
-      subTrigger: popState.subTrigger,
-      setSubPopEl: dispatchSub,
-      inline: inline
+      activeItem: ctxState.activeItem,
+      showSub: ctxState.showSub,
+      subChild: ctxState.subChild,
+      subTrigger:ctxState.subTrigger,
+      inline: inline,
+      setContext: dispatchCtx,
     }}>
       <ul className={classes}>
         { children && <MenuItem type="custom" itemType="normal" >{ children }</MenuItem> }
         {
           menList?.map((item, index) => {
-            return item.list ? <SubMenu key={index} {...item} /> : <MenuItem key={index} {...item} >{ item.children }</MenuItem>
+            return item.list ? <SubMenu itemKey={item.itemKey} key={item.itemKey ? item.itemKey : index} {...item} /> : <MenuItem itemKey={item.itemKey} key={item.itemKey ? item.itemKey : index} {...item} >{ item.children }</MenuItem>
           })
         }
       </ul>
-      <Popover open={popState.showSub}
-               anchorEl={popState.subTrigger}
+      <Popover open={ctxState.showSub}
+               anchorEl={ctxState.subTrigger}
                isArrow={true}
                onClose={handleClose}
       >
-        { popState.subChild }
+        { ctxState.subChild }
       </Popover>
     </MenuContext.Provider>
   )
