@@ -1,5 +1,5 @@
 
-import {Menu, Popover} from "@apsc/base-react";
+import {Menu, Popover, Input} from "@apsc/base-react";
 import "@apsc/style/src/components/popover.less"
 import {ItemType} from "@apsc/base-react/src/components/Menu/types";
 import {useRef, useState} from "react";
@@ -37,6 +37,9 @@ const App = () => {
                  anchorEl={trigger.current} onClose={() => { setOpen(false) }}>
           This is Test
         </Popover>
+      </div>
+      <div style={{margin: 100}}>
+        <Input name="username" />
       </div>
     </div>
   )
