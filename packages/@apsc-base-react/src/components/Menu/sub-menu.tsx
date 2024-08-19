@@ -1,6 +1,6 @@
 import React, {CSSProperties, forwardRef, useContext, useRef, useState} from "react";
 import classNames from "classnames";
-import {ItemType} from "./types";
+import {ItemType} from "./types/menu";
 import MenuItem from "./item";
 import {Animation} from "../../tools/Animation";
 import {MenuContext} from "./context";

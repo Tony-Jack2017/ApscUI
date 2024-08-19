@@ -1,7 +1,7 @@
 
 import {Menu, Popover, Input} from "@apsc/base-react";
 import "@apsc/style/src/components/popover.less"
-import {ItemType} from "@apsc/base-react/src/components/Menu/types";
+import {ItemType} from "packages/@apsc-base-react/src/components/Menu/types/menu";
 import {useRef, useState} from "react";
 
 const list:ItemType[] = [

@@ -3,17 +3,19 @@ import {ComWithChild} from "../../../types/common";
 
 export type BaseItemType = {
   itemType: "link" | "normal"
+  styleType?: "icon" | "normal",
+  icon?: string | ReactNode
+  iconStyle?: "circle" | "square"
   prefix?: ReactNode
   path?: string
-  icon?: string | ReactNode
   title?: string
 }
 
 export interface ItemType extends BaseItemType {
   itemKey?: string | number,
   type?: "list" | "custom" | "normal"
-  children?: ReactNode
   list?: ItemType[]
+  children?: ReactNode
 }
 
 export interface MenuItf extends ComWithChild {
@@ -31,3 +33,4 @@ export type MenuContextType = {
   inline: boolean
   setContext: Function
 }
+

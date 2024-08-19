@@ -15,7 +15,11 @@ const Input = forwardRef<HTMLInputElement, InputItf>((props, ref) => {
 
   return (
     <div style={{ width: 200 }}>
-      <Entry styleType="inner" label={label ? label : name} />
+      <Entry styleType="normal" label={label ? label : name} placeholder={"Please Input your name"} />
+      <p>1</p>
+      <Entry styleType="inner" label={label ? label : name} placeholder={"Please Input your name"} />
+      <p>2</p>
+      <Entry styleType="outline" label={label ? label : name} placeholder={"Please Input your name"} />
     </div>
   )
 })

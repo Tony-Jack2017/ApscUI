@@ -5,7 +5,7 @@ import Popover from "../Popover/index";
 import MenuItem from "./item";
 import SubMenu from "./sub-menu";
 
-import {MenuContextType, MenuItf} from "./types";
+import {MenuContextType, MenuItf} from "./types/menu";
 import { MenuContext } from "./context";
 
 
@@ -69,7 +69,9 @@ const Menu = forwardRef<HTMLUListElement, MenuItf>((props, ref) => {
         { children && <MenuItem type="custom" itemType="normal" >{ children }</MenuItem> }
         {
           menList?.map((item, index) => {
-            return item.list ? <SubMenu itemKey={item.itemKey} key={item.itemKey ? item.itemKey : index} {...item} /> : <MenuItem itemKey={item.itemKey} key={item.itemKey ? item.itemKey : index} {...item} >{ item.children }</MenuItem>
+            return item.list
+              ? <SubMenu itemKey={item.itemKey} key={item.itemKey ? item.itemKey : index} {...item} />
+              : <MenuItem itemKey={item.itemKey} key={item.itemKey ? item.itemKey : index} {...item} >{ item.children }</MenuItem>
           })
         }
       </ul>
@@ -85,6 +87,3 @@ const Menu = forwardRef<HTMLUListElement, MenuItf>((props, ref) => {
 })
 
 export default Menu
-
-export class ItemType {
-}

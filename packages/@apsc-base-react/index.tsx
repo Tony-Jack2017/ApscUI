@@ -7,11 +7,8 @@ import Input from "./src/components/Input";
 import Popover from "./src/components/Popover"
 
 import { Animation} from "./src/tools/Animation";
-import { ItemType } from "./src/components/Menu/types";
 
-export {
-  ItemType
-}
+import { ItemType as MenuItemType } from "./src/components/Menu/types/menu";
 
 
 export {
@@ -21,4 +18,8 @@ export {
   MenuItem,
   SubMenu,
   Animation,
+}
+
+export type {
+  MenuItemType
 }

@@ -1,5 +1,5 @@
 import {createContext} from "react";
-import {MenuContextType} from "../types";
+import {MenuContextType} from "../types/menu";
 
 export const MenuContext = createContext<MenuContextType>({
   activeItem: "",
