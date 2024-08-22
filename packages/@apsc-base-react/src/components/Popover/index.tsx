@@ -32,20 +32,19 @@ const getInnerStyle = (anchorPos:string, arrowPos:string, arrowInAnchorPos:strin
   const offset = handlePos(arrowPos) - handlePos(arrowInAnchorPos)
   switch (anchorPos) {
     case "top":
-      return {bottom: `calc(100% + ${isArrow ? 10 : 0}px)`, left: `${offset}%`}
+      return {bottom: `calc(100% + ${isArrow ? 10 : 0}px)`, left: `${handlePos(arrowPos)}%`,  transform: `translateX(${-handlePos(arrowInAnchorPos)}%)`}
     case "left":
-      return {right: `calc(100% + ${isArrow ? 10 : 0}px)`, top: `${offset}%`}
+      return {right: `calc(100% + ${isArrow ? 10 : 0}px)`, top: `${handlePos(arrowPos)}%`,  transform: `translateY(${-handlePos(arrowInAnchorPos)}%)`}
     case "bottom":
-      return {top: `calc(100% + ${isArrow ? 10 : 0}px)`, left: `${offset}%`}
+      return {top: `calc(100% + ${isArrow ? 10 : 0}px)`, left: `${handlePos(arrowPos)}%`, transform: `translateX(${-handlePos(arrowInAnchorPos)}%)`}
     case "right":
-      return {left: `calc(100% + ${isArrow ? 10 : 0}px)`, top: `${offset}%`}
+      return {left: `calc(100% + ${isArrow ? 10 : 0}px)`, top: `${handlePos(arrowPos)}%`,  transform: `translateY(${-handlePos(arrowInAnchorPos)}%)`}
     default:
       return {}
   }
 }
 
 const Popover = forwardRef<HTMLDivElement, PopoverItf>((props, ref) => {
-
   const {
     open,
     isArrow= false,
@@ -57,22 +56,23 @@ const Popover = forwardRef<HTMLDivElement, PopoverItf>((props, ref) => {
     children
   } = props
 
-
   const [position, setPosition] = useState<Position>({
     top: 0, left: 0, width: 0, height: 0
   })
 
-
   useEffect(() => {
     if(anchorEl) {
+      const { top, left, width, height } = anchorEl.getBoundingClientRect()
       setPosition({
-        top: anchorEl.offsetTop,
-        left: anchorEl.offsetLeft,
-        width: anchorEl.offsetWidth,
-        height: anchorEl.offsetHeight
+        // top: anchorEl.offsetTop,
+        // left: anchorEl.offsetLeft,
+        // width: anchorEl.offsetWidth,
+        // height: anchorEl.offsetHeight
+        top, left, width, height
       })
     }
   }, [anchorEl])
+
 
 
   const classes = classNames([
@@ -95,7 +95,7 @@ const Popover = forwardRef<HTMLDivElement, PopoverItf>((props, ref) => {
         <div className="apsc-popover-content">
           { children }
         </div>
-        { isArrow && <Arrow position={anchorPos} className="apsc-popover-arrow" /> }
+        { isArrow && <Arrow arrowPos={arrowInAnchorPos} position={anchorPos} className="apsc-popover-arrow" /> }
       </div>
     </WrapPortal>
   )

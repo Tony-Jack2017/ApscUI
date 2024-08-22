@@ -22,7 +22,7 @@ const Icon = forwardRef<HTMLIFrameElement, IconItf>((props, ref) => {
   ])
   return (
     <div className={classes} style={innerStyle}>
-      <i className={`bx bxs-${icon}`}></i>
+      <i className={`bx ${icon}`}></i>
     </div>
   )
 })

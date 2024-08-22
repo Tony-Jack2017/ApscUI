@@ -71,12 +71,12 @@ const WrapPortal= forwardRef<HTMLDivElement, WrapPortalItf>((props, ref) => {
   }, [show])
 
   const handleClick = () => {
-    if (onClose) onClose()
     setAnimation(pre => ({...pre, round: "disappear"}))
   }
 
   const handleAnimationEnd = () => {
     if(animation.round === "disappear") {
+      if (onClose) onClose()
       setVisible(false)
     }
   }
@@ -86,7 +86,6 @@ const WrapPortal= forwardRef<HTMLDivElement, WrapPortalItf>((props, ref) => {
       <div className="apsc-wrap-portal" tabIndex={-1} onClick={!maskVisible ? handleClick : () => {}}>
         {maskVisible && <Mask onClick={handleClick} />}
         <div ref={ref} className={wrapContentClasses} style={innerStyle}>
-
             <div className="apsc-wrap-content" style={posStyle}>
               <Animation
                 fromAnchor={true}

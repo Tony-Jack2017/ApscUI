@@ -69,7 +69,6 @@ const MenuItem = forwardRef<HTMLLIElement, MenuItemItf>((props, ref) => {
             : <div className={classNames(["apsc-menu-item-content", {"item-active": ctx.activeItem === itemKey}])}>
               <div className="menu-item-prefix" >
                 {prefix ? prefix : isElement(icon) ? icon : <Icon icon={icon as string}/>}
-                1111
               </div>
               <div className="menu-item-title">{title}</div>
               <div className="menu-item-suffix">{suffix ? suffix : isElement(iconSuf) ? iconSuf :

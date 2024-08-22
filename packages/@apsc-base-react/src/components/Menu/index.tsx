@@ -66,7 +66,7 @@ const Menu = forwardRef<HTMLUListElement, MenuItf>((props, ref) => {
       setContext: dispatchCtx,
     }}>
       <ul className={classes}>
-        { children && <MenuItem type="custom" itemType="normal" >{ children }</MenuItem> }
+        { children }
         {
           menList?.map((item, index) => {
             return item.list
@@ -85,5 +85,6 @@ const Menu = forwardRef<HTMLUListElement, MenuItf>((props, ref) => {
     </MenuContext.Provider>
   )
 })
+
 
 export default Menu

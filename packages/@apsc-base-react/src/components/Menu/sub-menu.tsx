@@ -76,10 +76,13 @@ const SubMenu = forwardRef<HTMLDivElement, SubMenuItf>((props, ref) => {
       {
         list?.map((item, index) => {
           if (item.type === "list") {
-            return item.list ? <SubMenu itemKey={item.itemKey} key={item.itemKey ? item.itemKey : index} {...item} /> : <MenuItem itemKey={item.itemKey} key={item.itemKey ? item.itemKey : index} {...item} />
+            return item.list
+              ? <SubMenu itemKey={item.itemKey} key={item.itemKey ? item.itemKey : index} {...item} />
+              : <MenuItem itemKey={item.itemKey} key={item.itemKey ? item.itemKey : index} {...item} />
           } else {
-            return item.list ? <SubMenu itemKey={item.itemKey} key={item.itemKey ? item.itemKey : index} {...item} /> :
-              <MenuItem itemKey={item.itemKey} key={item.itemKey ? item.itemKey : index} {...item} >{item.children}</MenuItem>
+            return item.list
+              ? <SubMenu itemKey={item.itemKey} key={item.itemKey ? item.itemKey : index} {...item} />
+              : <MenuItem itemKey={item.itemKey} key={item.itemKey ? item.itemKey : index} {...item} >{item.children}</MenuItem>
           }
         })
       }
