@@ -1,0 +1,31 @@
+
+.apsc-list {
+  --gap: 12px;
+}
+
+@gap: var(--gap);
+
+
+.apsc-list {
+  position: relative;
+  box-sizing: border-box;
+  &-item {
+    opacity: 0;
+    transform: translateX(20px);
+    transition: all 0.5s ease;
+    &.list-item-default {
+      padding: 10px;
+      border-radius: 6px;
+      border: 1px solid #a2adb7;
+      background-color: white;
+    }
+    &:not(:last-child) {
+      margin-bottom: @gap;
+    }
+  }
+  .observe {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+

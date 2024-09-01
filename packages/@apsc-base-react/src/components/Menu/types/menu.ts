@@ -1,4 +1,4 @@
-import {ReactNode} from "react";
+import {CSSProperties, ReactNode} from "react";
 import {ComWithChild} from "../../../types/common";
 
 export type BaseItemType = {
@@ -19,10 +19,10 @@ export interface ItemType extends BaseItemType {
 }
 
 export interface MenuItf extends ComWithChild {
-  manySub?: boolean
   direction?: "vertical" | "horizontal"
   inline?: boolean
   menList?: ItemType[]
+  style?: CSSProperties
 }
 
 export type MenuContextType = {

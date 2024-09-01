@@ -33,10 +33,10 @@ const ctxReducer = (
 
 const Menu = forwardRef<HTMLUListElement, MenuItf>((props, ref) => {
   const {
-    manySub = true,
     menList,
     inline = false,
     direction = "vertical",
+    style,
     children
   } = props
   const classes = classNames([
@@ -65,7 +65,7 @@ const Menu = forwardRef<HTMLUListElement, MenuItf>((props, ref) => {
       inline: inline,
       setContext: dispatchCtx,
     }}>
-      <ul className={classes}>
+      <ul className={classes} style={style}>
         { children }
         {
           menList?.map((item, index) => {

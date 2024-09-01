@@ -1,0 +1,48 @@
+@import "../common/var/base";
+
+.apsc-dialog {
+  background-color: white;
+  padding: 12px 20px;
+  border-radius: 6px;
+  &-header {
+    .default-header {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+  }
+  &-content {
+  }
+  &-footer {
+    .default-footer {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: end;
+      gap: 12px;
+      margin-top: 12px;
+      .btn {
+        padding: 6px 12px;
+        border-radius: 50px;
+        cursor: pointer;
+      }
+      .cancel-btn {
+        color: rgba(0, 0, 0, .8);
+        border: 1px solid rgba(0, 0, 0, .4);
+        &:hover {
+          background-color: rgba(0, 0, 0, .05);
+        }
+      }
+      .confirm-btn {
+        color: white;
+        border: 1px solid rgba(@apsc-primary-color, 1);
+        background-color: rgba(@apsc-primary-color, 1);
+        &:hover {
+          background-color: rgba(@apsc-primary-color, .8);
+        }
+      }
+    }
+  }
+}

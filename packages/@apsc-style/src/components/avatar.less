@@ -1,0 +1,44 @@
+.apsc-avatar {
+  &-content {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #bdbdbd;
+    img {
+      width: 100%;
+      object-fit: contain;
+    }
+  }
+}
+
+.avatar-shape-circle {
+  .apsc-avatar-content {
+    border-radius: 100px;
+    overflow: hidden;
+  }
+}
+
+.avatar-shape-square {
+  .apsc-avatar-content {
+    border-radius: 8px;
+    overflow: hidden;
+  }
+}
+
+.avatar-size-small {
+  width: 36px;
+  height: 36px;
+  font-size: 20px;
+}
+.avatar-size-normal {
+  width: 48px;
+  height: 48px;
+  font-size: 28px;
+}
+.avatar-size-large {
+  width: 60px;
+  height: 60px;
+  font-size: 32px;
+}

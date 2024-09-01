@@ -1,20 +1,11 @@
 import {createBrowserRouter} from "react-router-dom";
 import FlexPage from "../pages/component/layout/flex";
+import DashboardPage from "../pages/home/dashboard";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    children: [
-      { path: "home" },
-      { path: "blog" },
-      { path: "project" },
-      {
-        path: "component",
-        children: [
-          { path: "flex", element: <FlexPage /> }
-        ]
-      }
-    ]
+    element: <DashboardPage />
   }
 ])
 

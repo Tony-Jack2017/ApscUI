@@ -20,13 +20,14 @@ export interface WrapPortalItf extends ComWithChild {
   position?: Position
   posStyle?: CSSProperties
   maskVisible?: boolean
+  closeType?: "mask" | "content" | "outside"
   motionName?: string
   motionType?: "once" | "round"
   onClose?: () => void
   children: ReactNode
 }
 
-const WrapPortal= forwardRef<HTMLDivElement, WrapPortalItf>((props, ref) => {
+const WrapPortal = forwardRef<HTMLDivElement, WrapPortalItf>((props, ref) => {
   const {
     show,
     position,
@@ -36,6 +37,7 @@ const WrapPortal= forwardRef<HTMLDivElement, WrapPortalItf>((props, ref) => {
     motionType = "round",
     children,
     maskVisible = true,
+    closeType = "outside",
     onClose
   } = props
 
@@ -67,6 +69,8 @@ const WrapPortal= forwardRef<HTMLDivElement, WrapPortalItf>((props, ref) => {
     if (show) {
       setAnimation(pre => ({...pre, round: "appear"}))
       setVisible(true)
+    }else {
+      setAnimation(pre => ({...pre, round: "disappear"}))
     }
   }, [show])
 
@@ -75,7 +79,7 @@ const WrapPortal= forwardRef<HTMLDivElement, WrapPortalItf>((props, ref) => {
   }
 
   const handleAnimationEnd = () => {
-    if(animation.round === "disappear") {
+    if (animation.round === "disappear") {
       if (onClose) onClose()
       setVisible(false)
     }
@@ -83,21 +87,33 @@ const WrapPortal= forwardRef<HTMLDivElement, WrapPortalItf>((props, ref) => {
 
   if (visible) {
     return createPortal((
-      <div className="apsc-wrap-portal" tabIndex={-1} onClick={!maskVisible ? handleClick : () => {}}>
-        {maskVisible && <Mask onClick={handleClick} />}
-        <div ref={ref} className={wrapContentClasses} style={innerStyle}>
-            <div className="apsc-wrap-content" style={posStyle}>
-              <Animation
-                fromAnchor={true}
-                offset={[300, 300]}
-                animationRound={animation.round}
-                animationName={animation.name}
-                animationType={animation.type}
-                onAnimationEnd={handleAnimationEnd}
-              >
-                {children}
-              </Animation>
-            </div>
+      <div className="apsc-wrap-portal" tabIndex={-1} onClick={() => {
+        closeType === "outside" ? handleClick() : null
+      }}>
+        {maskVisible && <Mask onClick={(event) => {
+          event.stopPropagation()
+          closeType === "mask" ? handleClick() : null
+        }}/>}
+        <div
+          ref={ref}
+          className={wrapContentClasses}
+          style={innerStyle}
+          onClick={(event) => {
+            event.stopPropagation()
+          }}
+        >
+          <div className="apsc-wrap-content" style={posStyle}>
+            <Animation
+              fromAnchor={true}
+              offset={[300, 300]}
+              animationRound={animation.round}
+              animationName={animation.name}
+              animationType={animation.type}
+              onAnimationEnd={handleAnimationEnd}
+            >
+              {children}
+            </Animation>
+          </div>
         </div>
       </div>
     ), document.body)

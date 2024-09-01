@@ -55,10 +55,9 @@ const MenuItem = forwardRef<HTMLLIElement, MenuItemItf>((props, ref) => {
         children
           ? children
           : (itemType === "link" && path)
-            ? <NavLink to={path} className={({isActive}) =>
-              [
-                isActive ? "item-active" : "",
-              ].join(" ")
+            ?
+            <NavLink to={path} className={({isActive}) =>
+              [ "apsc-menu-item-content", isActive ? "item-active" : ""].join(" ")
             }>
               <div className="menu-item-prefix">{prefix ? prefix : isElement(icon) ? icon :
                 <Icon icon={icon as string}/>}</div>
@@ -66,7 +65,8 @@ const MenuItem = forwardRef<HTMLLIElement, MenuItemItf>((props, ref) => {
               <div className="menu-item-suffix">{suffix ? suffix : isElement(iconSuf) ? iconSuf :
                 <Icon icon={iconSuf as string}/>}</div>
             </NavLink>
-            : <div className={classNames(["apsc-menu-item-content", {"item-active": ctx.activeItem === itemKey}])}>
+            :
+            <div className={classNames(["apsc-menu-item-content", {"item-active": ctx.activeItem === itemKey}])}>
               <div className="menu-item-prefix" >
                 {prefix ? prefix : isElement(icon) ? icon : <Icon icon={icon as string}/>}
               </div>

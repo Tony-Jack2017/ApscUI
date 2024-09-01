@@ -1,0 +1,43 @@
+.apsc-scroll-bar {
+  min-width: 200px;
+  min-height: 300px;
+  position: relative;
+  .scroll-bar-wrapper {
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    .scroll-bar-content {
+    }
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+  .scroll-bar-track {
+    position: absolute;
+    &.track-horizontal {
+      height: 16px;
+      width: 100%;
+      bottom: 0;
+    }
+    &.track-vertical {
+      width: 15px;
+      height: 100%;
+      right: 0;
+      bottom: 0;
+    }
+    .scroll-bar-thumb {
+      position: absolute;
+      border-radius: 5px;
+      background-color: #a2adb7;
+    }
+    .thumb-vertical {
+      left: 50%;
+      transform: translateX(-50%);
+      width: 5px;
+    }
+    .thumb-horizontal {
+      height: 5px;
+      min-height: 10px;
+    }
+  }
+}

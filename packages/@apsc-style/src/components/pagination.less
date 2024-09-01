@@ -1,0 +1,29 @@
+@import "../common/var/base";
+
+.apsc-pagination {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  .prefix, .suffix {
+  }
+  .content {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    .page-item {
+      border-radius: 4px;
+      padding: 4px 8px;
+      cursor: pointer;
+      &-inactive {
+        &:hover {
+          font-weight: bold;
+          color: rgba(@apsc-primary-color, 1);
+        }
+      }
+      &-active {
+        color: white;
+        background-color: rgba(@apsc-primary-color, 1);
+      }
+    }
+  }
+}

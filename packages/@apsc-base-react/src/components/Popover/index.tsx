@@ -64,15 +64,10 @@ const Popover = forwardRef<HTMLDivElement, PopoverItf>((props, ref) => {
     if(anchorEl) {
       const { top, left, width, height } = anchorEl.getBoundingClientRect()
       setPosition({
-        // top: anchorEl.offsetTop,
-        // left: anchorEl.offsetLeft,
-        // width: anchorEl.offsetWidth,
-        // height: anchorEl.offsetHeight
         top, left, width, height
       })
     }
   }, [anchorEl])
-
 
 
   const classes = classNames([
