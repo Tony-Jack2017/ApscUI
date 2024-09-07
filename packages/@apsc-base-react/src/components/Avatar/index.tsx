@@ -1,10 +1,10 @@
 import classNames from "classnames";
-import {FC} from "react";
+import {FC, ReactNode} from "react";
 import Icon from "../../tools/Icon";
 
 interface AvatarItf {
   shape?: "circle" | "square"
-  label?: string
+  label?: string | ReactNode
   src?: string
   size?: number | string | "normal" | "small" | "large"
 }

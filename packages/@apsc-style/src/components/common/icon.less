@@ -1,14 +1,25 @@
+@import "../../common/var/base";
+
 .apsc-icon {
-  display: flex;
+  --color: black;
+  --active-color: rgba(@apsc-primary-color, 1);
+  --active-bg: #b93939;
+  --default-bg: white;
+}
+
+.apsc-icon {
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-
   &-haveBg {
+    border-radius: 4px;
+    color: var(--color);
     font-size: 20px;
     padding: 4px;
+    background-color: var(--default-bg);
     &:hover {
-      border-radius: 4px;
-      background-color: #eeeeee;
+      color: var(--active-color);
+      background-color: var(--active-bg);
     }
   }
 }

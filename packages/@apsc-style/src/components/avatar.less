@@ -1,3 +1,5 @@
+
+/********   base   ********/
 .apsc-avatar {
   &-content {
     height: 100%;
@@ -5,7 +7,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #bdbdbd;
+    background-color: #e7e7e7;
     img {
       width: 100%;
       object-fit: contain;
@@ -19,7 +21,6 @@
     overflow: hidden;
   }
 }
-
 .avatar-shape-square {
   .apsc-avatar-content {
     border-radius: 8px;
@@ -41,4 +42,28 @@
   width: 60px;
   height: 60px;
   font-size: 32px;
+}
+
+
+/********   group   ********/
+.apsc-avatar-group {
+  display: flex;
+  align-items: center;
+  .apsc-avatar-item {
+    border: 2px solid white;
+    &:not(:first-child) {
+      margin-left: -16px;
+    }
+  }
+}
+
+.group-shape-circle {
+  .apsc-avatar-item {
+    border-radius: 50%;
+    transition: all .3s ease;
+    cursor: pointer;
+    &:hover {
+      transform: translateY(-6px) scale(1.07);
+    }
+  }
 }

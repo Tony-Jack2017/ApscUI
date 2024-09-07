@@ -1,0 +1,36 @@
+.apsc-divider {
+  --color: #cdcfd6;
+}
+
+.apsc-divider {
+  position: relative;
+  display: flex;
+  align-items: center;
+  .divider-content {
+    padding: 0 12px;
+  }
+  &::before, &::after {
+    height: 1px;
+    background-color: var(--color);
+    flex: 1;
+  }
+}
+
+.divider-pos-start {
+  &::after {
+    content: "";
+  }
+}
+
+.divider-pos-center {
+  &::before, &::after {
+    content: "";
+  }
+}
+
+.divider-pos-end {
+  &::before {
+    content: "";
+  }
+}
+

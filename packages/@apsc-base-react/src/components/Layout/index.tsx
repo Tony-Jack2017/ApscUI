@@ -1,3 +1,8 @@
+
+interface LayoutItf {
+
+}
+
 const Layout = () => {
   return (
     <div>

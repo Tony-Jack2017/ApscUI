@@ -3,13 +3,14 @@ import MenuItem from "./src/components/Menu/item"
 import SubMenu from "./src/components/Menu/sub-menu"
 import List from "./src/components/List";
 
-
 import Input from "./src/components/Input";
 import Popover from "./src/components/Popover"
 import Avatar from "./src/components/Avatar"
+import AvatarGroup from "./src/components/Avatar/group";
 import Pagination from "./src/components/Pagination";
 import Dialog from "./src/components/Dialog";
-
+import Progress from "./src/components/Progress";
+import Divider from "./src/components/Divider"
 
 import { Animation} from "./src/tools/Animation";
 import Icon from "./src/tools/Icon";
@@ -19,6 +20,7 @@ import { ItemType as MenuItemType } from "./src/components/Menu/types/menu";
 
 export {
   Avatar,
+  AvatarGroup,
   Input,
   Popover,
   Menu,
@@ -27,6 +29,8 @@ export {
   List,
   Pagination,
   Dialog,
+  Progress,
+  Divider,
 
   Animation,
   Icon,

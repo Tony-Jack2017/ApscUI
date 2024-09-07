@@ -1,0 +1,45 @@
+@import "../common/var/base";
+
+.apsc-progress {
+  --progress-height: 4px;
+  --progress-percent: 0%;
+}
+
+
+.progress-type-circle {
+
+}
+
+.progress-type-square {
+  display: flex;
+  align-items: center;
+  .progress-content {
+    position: relative;
+    border-radius: 20px;
+    flex: 1;
+    height: var(--progress-height);
+    overflow: hidden;
+    .progress-bg {
+      border-radius: 20px;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(@apsc-primary-color, .2);
+    }
+    .progress-slider {
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: block;
+      background-color: rgba(@apsc-primary-color, 1);
+      border-radius: 20px;
+      width: 100%;
+      height: 100%;
+      transition: all .3s ease;
+      transform: translateX(calc(-100% + var(--progress-percent)));
+    }
+  }
+  .progress-tip {
+    font-size: 12px;
+    padding: 4px;
+  }
+}
