@@ -1,12 +1,17 @@
+import classNames from "classnames";
 
 interface LayoutItf {
 
 }
 
 const Layout = () => {
-  return (
-    <div>
 
+  const classes = classNames([
+    "apsc-layout"
+  ])
+
+  return (
+    <div className={classes}>
     </div>
   )
 }
