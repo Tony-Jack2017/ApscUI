@@ -3,7 +3,8 @@ import React, {CSSProperties, forwardRef, Fragment, ReactElement, UIEventHandler
 interface ApscVirListItf {
   height: number,
   list: any[]
-  fixedItem?: boolean
+  isFixed?: boolean
+  fixedSize?: number
   gap: number
   children: ({item, style}:{item: any, style: CSSProperties}) => ReactElement
 }
@@ -11,7 +12,7 @@ interface ApscVirListItf {
 const VirList = forwardRef<HTMLDivElement, ApscVirListItf>((props, ref) => {
 
   const {
-    height, gap = 0, list, children
+    height, gap = 0, isFixed= true, fixedSize = 35, list, children
   } = props
 
   const [contentStyle, setContentStyle] = useState<CSSProperties>({
@@ -19,7 +20,7 @@ const VirList = forwardRef<HTMLDivElement, ApscVirListItf>((props, ref) => {
   })
   const [offset, setOffset] = useState({
     start: 0,
-    end: Math.ceil(height / 35)
+    end: Math.ceil(height / fixedSize)
   })
   const [virList, setVirList] = useState(list.slice(offset.start, offset.end))
 
@@ -27,7 +28,7 @@ const VirList = forwardRef<HTMLDivElement, ApscVirListItf>((props, ref) => {
   useEffect(() => {
     setContentStyle({
       width: "100%",
-      height: ((list.length) * (35 + gap) - gap)
+      height: ((list.length) * (fixedSize + gap) - gap)
     })
   }, [list])
 
@@ -39,8 +40,8 @@ const VirList = forwardRef<HTMLDivElement, ApscVirListItf>((props, ref) => {
     if(event.currentTarget) {
       const scrollTop = event.currentTarget.scrollTop
       setOffset({
-        start: Math.floor(scrollTop / (35 + gap)),
-        end: Math.ceil((height + scrollTop) / (35 + gap))
+        start: Math.floor(scrollTop / (fixedSize + gap)),
+        end: Math.ceil((height + scrollTop) / (fixedSize + gap))
       })
     }
   }
@@ -64,11 +65,11 @@ const VirList = forwardRef<HTMLDivElement, ApscVirListItf>((props, ref) => {
                       style:{
                         backgroundColor: (index + offset.start) % 2 === 0 ? "red" : "green",
                         position: "absolute",
-                        top: ((index + offset.start) * (35 + 10)),
+                        top: ((index + offset.start) * (fixedSize + 10)),
                         left: 0,
                         width: "100%",
                         textAlign: "center",
-                        height: 35
+                        height: fixedSize
                       }
                     })
                   }
