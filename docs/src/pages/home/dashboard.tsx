@@ -1,6 +1,6 @@
 import {
   Menu, Popover, Input, Avatar, List,
-  ScrollBar, Icon, Pagination, Dialog, AvatarGroup, Progress, Divider
+  ScrollBar, Icon, Pagination, Dialog, AvatarGroup, Progress, Divider, VirList
 } from "@apsc/base-react";
 import "@apsc/style/src/components/popover.less"
 import {MenuItemType} from "@apsc/base-react";
@@ -28,6 +28,8 @@ const list: MenuItemType[] = [
 const avatarList = [
   Logo, Logo, Logo, Logo, Logo
 ]
+
+const testList = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
 
 const DashboardPage = () => {
 
@@ -68,6 +70,15 @@ const DashboardPage = () => {
       </div>
       <div style={{margin: 100, width: 300}}>
         <Progress type="square" percent={percent} />
+      </div>
+      <div style={{margin: 100, width: 300}}>
+        <VirList height={300} list={testList}>
+          { ({item, style}) => (
+            <div style={style}>
+              {item}
+            </div>
+          ) }
+        </VirList>
       </div>
     </div>
   )

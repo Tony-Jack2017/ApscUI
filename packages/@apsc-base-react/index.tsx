@@ -11,6 +11,7 @@ import Pagination from "./src/components/Pagination";
 import Dialog from "./src/components/Dialog";
 import Progress from "./src/components/Progress";
 import Divider from "./src/components/Divider"
+import VirList from "./src/components/VirList";
 
 import { Animation} from "./src/tools/Animation";
 import Icon from "./src/tools/Icon";
@@ -31,6 +32,7 @@ export {
   Dialog,
   Progress,
   Divider,
+  VirList,
 
   Animation,
   Icon,

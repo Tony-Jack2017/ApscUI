@@ -1,21 +1,27 @@
-import {CSSProperties, forwardRef, ReactElement, useEffect, useState} from "react";
+import {CSSProperties, forwardRef, Fragment, ReactElement, useEffect, useState} from "react";
 
 interface ApscVirListItf {
+  height: number,
   list: any[]
   fixedItem?: boolean
-  children: (item: any, style: CSSProperties) => ReactElement
+  children: ({item, style}:{item: any, style: CSSProperties}) => ReactElement
 }
 
-const ApscVirList = forwardRef<HTMLDivElement, ApscVirListItf>((props, ref) => {
+const VirList = forwardRef<HTMLDivElement, ApscVirListItf>((props, ref) => {
 
   const {
-    list, children
+    height, list, children
   } = props
 
   const [contentStyle, setContentStyle] = useState<CSSProperties>({
     height: 0, width: 0
   })
-  const [virList, setVirList] = useState([])
+  const [offset, setOffset] = useState({
+    start: 0,
+    end: Math.ceil(height / 35)
+  })
+  const [virList, setVirList] = useState(list.slice(offset.start, offset.end))
+
 
   useEffect(() => {
     setContentStyle({
@@ -25,20 +31,24 @@ const ApscVirList = forwardRef<HTMLDivElement, ApscVirListItf>((props, ref) => {
   }, [list])
 
   const handleScroll = () => {
+  }
 
+  const innerStyle = {
+    width: "100%",
+    height: height
   }
 
   return (
-    <div ref={ref} className="apsc-vir-list">
-      <div className="vir-list-viewer" onScroll={handleScroll}>
+    <div ref={ref} className="apsc-vir-list" style={innerStyle}>
+      <div className="vir-list-container" onScroll={handleScroll}>
         <div className="vir-list-content" style={contentStyle}>
           {
             virList.map((item, index) => {
-              const itemStyle = { position: "absolute", top: index * 35, left: 0 } as CSSProperties
+              const itemStyle = { backgroundColor: index % 2 === 0 ? "white" : "red", position: "absolute", top: index * 35, left: 0, width: "100%", textAlign: "center", height: 35 } as CSSProperties
               return (
-                <>
-                  { children(item, itemStyle) }
-                </>
+                <Fragment key={index}>
+                  { children({item, style:itemStyle}) }
+                </Fragment>
               )
             })
           }
@@ -49,4 +59,4 @@ const ApscVirList = forwardRef<HTMLDivElement, ApscVirListItf>((props, ref) => {
 
 })
 
-export default ApscVirList
+export default VirList
