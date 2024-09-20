@@ -29,7 +29,7 @@ const avatarList = [
   Logo, Logo, Logo, Logo, Logo
 ]
 
-const testList = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+const testList = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
 
 const DashboardPage = () => {
 
@@ -72,7 +72,7 @@ const DashboardPage = () => {
         <Progress type="square" percent={percent} />
       </div>
       <div style={{margin: 100, width: 300}}>
-        <VirList height={300} list={testList}>
+        <VirList gap={10} height={300} list={testList}>
           { ({item, style}) => (
             <div style={style}>
               {item}

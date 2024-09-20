@@ -1,16 +1,17 @@
-import {CSSProperties, forwardRef, Fragment, ReactElement, useEffect, useState} from "react";
+import React, {CSSProperties, forwardRef, Fragment, ReactElement, UIEventHandler, useEffect, useState} from "react";
 
 interface ApscVirListItf {
   height: number,
   list: any[]
   fixedItem?: boolean
+  gap: number
   children: ({item, style}:{item: any, style: CSSProperties}) => ReactElement
 }
 
 const VirList = forwardRef<HTMLDivElement, ApscVirListItf>((props, ref) => {
 
   const {
-    height, list, children
+    height, gap = 0, list, children
   } = props
 
   const [contentStyle, setContentStyle] = useState<CSSProperties>({
@@ -26,11 +27,22 @@ const VirList = forwardRef<HTMLDivElement, ApscVirListItf>((props, ref) => {
   useEffect(() => {
     setContentStyle({
       width: "100%",
-      height: list.length * 35
+      height: ((list.length) * (35 + gap) - gap)
     })
   }, [list])
 
-  const handleScroll = () => {
+  useEffect(() => {
+    setVirList(list.slice(offset.start, offset.end))
+  }, [offset])
+
+  const handleScroll= (event: React.UIEvent<HTMLDivElement>) => {
+    if(event.currentTarget) {
+      const scrollTop = event.currentTarget.scrollTop
+      setOffset({
+        start: Math.floor(scrollTop / (35 + gap)),
+        end: Math.ceil((height + scrollTop) / (35 + gap))
+      })
+    }
   }
 
   const innerStyle = {
@@ -44,10 +56,22 @@ const VirList = forwardRef<HTMLDivElement, ApscVirListItf>((props, ref) => {
         <div className="vir-list-content" style={contentStyle}>
           {
             virList.map((item, index) => {
-              const itemStyle = { backgroundColor: index % 2 === 0 ? "white" : "red", position: "absolute", top: index * 35, left: 0, width: "100%", textAlign: "center", height: 35 } as CSSProperties
               return (
                 <Fragment key={index}>
-                  { children({item, style:itemStyle}) }
+                  {
+                    children({
+                      item,
+                      style:{
+                        backgroundColor: (index + offset.start) % 2 === 0 ? "red" : "green",
+                        position: "absolute",
+                        top: ((index + offset.start) * (35 + 10)),
+                        left: 0,
+                        width: "100%",
+                        textAlign: "center",
+                        height: 35
+                      }
+                    })
+                  }
                 </Fragment>
               )
             })
